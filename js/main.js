@@ -49,7 +49,7 @@ function getPhotos() {
   var photosInfoCount = []; // переменая и пустой массив выдает заданное в цикле число
   for (var i = 0; i < PHOTOS_COUNT; i++) {
     var photosScetch = {
-      url: 'url', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
+      url: 'url' + ' photos/' + (i + 1) + '.jpg', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
       description: descriptionPhoto,
       likes: getRandomCount(MIN_LIKES_COUNT, MAX_LIKES_COUNT), // здесь добавить из будущей  внешней функции которая через цикл создаст количество лайков случайно от 15 до 200.
       comments: getComments()
