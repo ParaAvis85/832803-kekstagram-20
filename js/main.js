@@ -49,7 +49,7 @@ function getPhotos() {
   var photosInfoCount = []; // переменая и пустой массив выдает заданное в цикле число
   for (var i = 0; i < PHOTOS_COUNT; i++) {
     var photosScetch = {
-      url: 'url' + ' photos/' + (i + 1) + '.jpg', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
+      url: 'photos/' + (i + 1) + '.jpg', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
       description: descriptionPhoto,
       likes: getRandomCount(MIN_LIKES_COUNT, MAX_LIKES_COUNT), // здесь добавить из будущей  внешней функции которая через цикл создаст количество лайков случайно от 15 до 200.
       comments: getComments()
@@ -59,4 +59,26 @@ function getPhotos() {
   return photosInfoCount; // видим число обьектов через массив
 }
 
-getPhotos(); // выводим данные в консоль из функции создания массива из обьекта
+// выводим данные в консоль из функции создания массива из обьекта
+
+var photosArray = getPhotos(); // переменная массива фото берет данные из функции создания фото.
+var photosList = document.querySelector('.pictures'); //  ищем список фото
+var photosTemplate = document.querySelector('#picture') //  ищем шаблон для рендера фото
+.content.querySelector('.picture');
+// функция отрисовки фото 1шт
+function renderPhotos(photo) {
+  var photoItem = photosTemplate.cloneNode(true); // переменная клонирует все вложенности шаблона фото
+  photoItem.querySelector('.picture__img').src = photo.url; // ищем и вносим фото в шаблон
+  photoItem.querySelector('.picture__comments').textContent = photo.comments; // ищем и вносим коментарии в шаблн
+  photoItem.querySelector('.picture__likes').textContent = photo.likes; // ищем и вносим количество лайков в шаблон
+  return photoItem;
+}
+
+var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
+// цикл отрисовки массива в фото из переменной
+for (var i = 0; i < photosArray.length - 1; i++) {
+  templateFragment.appendChild(renderPhotos(photosArray[i]));
+}
+
+photosList.appendChild(templateFragment); // добавляем фрагмент с нужным количеством фото на страницу
+
