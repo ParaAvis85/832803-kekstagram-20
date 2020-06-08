@@ -76,7 +76,7 @@ function renderPhotos(photo) {
 
 var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
 // цикл отрисовки массива в фото из переменной
-for (var i = 0; i < photosArray.length - 1; i++) {
+for (var i = 0; i < photosArray.length; i++) {
   templateFragment.appendChild(renderPhotos(photosArray[i]));
 }
 
