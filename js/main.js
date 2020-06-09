@@ -61,7 +61,7 @@ function getPhotos() {
 
 // выводим данные в консоль из функции создания массива из обьекта
 
-var photosArray = getPhotos(); // переменная массива фото берет данные из функции создания фото.
+var manyPhotos = getPhotos(); // переменная массива фото берет данные из функции создания фото.
 var photosList = document.querySelector('.pictures'); //  ищем список фото
 var photosTemplate = document.querySelector('#picture') //  ищем шаблон для рендера фото
 .content.querySelector('.picture');
@@ -75,14 +75,14 @@ function createPhoto(photo) {
   return photoItem;
 }
 
-function renderPhotos() {
+function renderPhotos(manyPhoto) {
   var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
   // цикл отрисовки массива в фото из переменной
   for (var i = 0; i < PHOTOS_COUNT; i++) {
-    templateFragment.appendChild(createPhoto(photosArray[i]));
+    templateFragment.appendChild(createPhoto(manyPhoto[i]));
   }
 
   photosList.appendChild(templateFragment); // добавляем фрагмент с нужным количеством фото на страницу
 
 }
-renderPhotos(photosArray);
+renderPhotos(manyPhotos);
