@@ -65,20 +65,24 @@ var photosArray = getPhotos(); // переменная массива фото �
 var photosList = document.querySelector('.pictures'); //  ищем список фото
 var photosTemplate = document.querySelector('#picture') //  ищем шаблон для рендера фото
 .content.querySelector('.picture');
+
 // функция отрисовки фото 1шт
-function renderPhotos(photo) {
+function createPhoto(photo) {
   var photoItem = photosTemplate.cloneNode(true); // переменная клонирует все вложенности шаблона фото
   photoItem.querySelector('.picture__img').src = photo.url; // ищем и вносим фото в шаблон
-  photoItem.querySelector('.picture__comments').textContent = photo.comments; // ищем и вносим коментарии в шаблн
+  photoItem.querySelector('.picture__comments').textContent = photo.comments.length; // ищем и вносим коментарии в шаблн
   photoItem.querySelector('.picture__likes').textContent = photo.likes; // ищем и вносим количество лайков в шаблон
   return photoItem;
 }
 
-var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
-// цикл отрисовки массива в фото из переменной
-for (var i = 0; i < photosArray.length; i++) {
-  templateFragment.appendChild(renderPhotos(photosArray[i]));
+function renderPhotos() {
+  var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
+  // цикл отрисовки массива в фото из переменной
+  for (var i = 0; i < PHOTOS_COUNT; i++) {
+    templateFragment.appendChild(createPhoto(photosArray[i]));
+  }
+
+  photosList.appendChild(templateFragment); // добавляем фрагмент с нужным количеством фото на страницу
+
 }
-
-photosList.appendChild(templateFragment); // добавляем фрагмент с нужным количеством фото на страницу
-
+renderPhotos(photosArray);
