@@ -7,7 +7,7 @@ var MAX_LIKES_COUNT = 200; // максимальное количество ла
 var MIN_AVATAR_COUNT = 1; // минимальное число аватара
 var MAX_AVATAR_COUNT = 6; // максимальное число аватара
 var descriptionPhoto = ''; // описание фотографии пустое
-
+// функция случайного коментария
 function messageRandom() {
   var messagesArray = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
     'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
@@ -26,7 +26,7 @@ function nameRandom() {
 // функция генерации случайных коментариев
 function getComments() {
   var comments = [];
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 8; i++) {
     var comment = {
       avatar: 'img/avatar-' + getRandomCount(MIN_AVATAR_COUNT, MAX_AVATAR_COUNT) + '.svg', // это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg  где данные  в скобках контактенация цикла количества фото по количеству в задании
       message: messageRandom(), // один или два разных коменнтария добавить случайно что означает тут будет функция которая будет с циклом рандомайзером
@@ -86,3 +86,40 @@ function renderPhotos(manyPhoto) {
 
 }
 renderPhotos(manyPhotos);
+
+// функция открытия большой фотографии
+function largePicture() {
+  var bigPicture = document.querySelector('.big-picture');
+  bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
+  bigPicture.querySelector('.big-picture__img img').src = manyPhotos[0].url; // ставим первое фото с массива фото
+  bigPicture.querySelector('.likes-count').textContent = manyPhotos[0].likes; // ставим динамичесике лайки из функции создания количества случайных лайков
+  bigPicture.querySelector('.comments-count').textContent = manyPhotos[0].comments.length; // ставим динамические коментарии из функции создания коментариев
+}
+largePicture();
+
+var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
+var moreUserComment = manyPhotos[0].comments[0]; // записываем в переменную случайные коментарии и фото
+function commentUsers() {
+
+  var newComment = document.createElement('li'); // создаем элемент списка "li", методом создания элемента и вносим в переменную
+  newComment.classList.add('social__comment'); // добавляем класс для созданного "li"
+  var commentAvatar = document.createElement('img'); // создаем тег "img" и добавляем в переменную методом создания элемента
+  commentAvatar.classList.add('social__picture'); // добавляем тегу "img" класс методом создания класса
+  commentAvatar.src = moreUserComment.avatar; // добавляем адресс src и саму аватарку для коментария в теге "img"
+  commentAvatar.alt = moreUserComment.name; // добавляем льтернативный текст аватарке в теге "img"
+  commentAvatar.style = 'width="35" height="35"'; // вносим размер аватарки в тег "img" инлайн стили
+  newComment.append(commentAvatar); // добавляем весь "li" с "img" в конец списка "ul"
+
+  var newTextComment = document.createElement('p'); // добавляем тег "p" в разметку элемента "li" метод создания элементов
+  newTextComment.classList.add('social__text'); // добавляем класс тегу "p"
+  newTextComment.textContent = moreUserComment.message; // вносим сам текст коментария в тег "p"
+  newComment.append(newTextComment); // добавляем коментарий в тэлемент списка "li"
+
+  return bigSocialComments.append(newComment); // возвращаем из функции в список "ul" полностью готовый "li" с "img" "p"
+}
+commentUsers(); // вызываем функцию создания разметки
+
+document.querySelector('.social__caption').textContent = manyPhotos[0].description; // вставляем пустое описание фотографии
+document.querySelector('.social__comment-count').classList.add('hidden'); // скрываем счетчик коментариев
+document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
+document.querySelector('body').classList.add('modal-open');
