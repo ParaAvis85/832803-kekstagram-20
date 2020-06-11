@@ -94,6 +94,11 @@ function openLargePicture() {
   bigPicture.querySelector('.big-picture__img img').src = manyPhotos[0].url; // ставим первое фото с массива фото
   bigPicture.querySelector('.likes-count').textContent = manyPhotos[0].likes; // ставим динамичесике лайки из функции создания количества случайных лайков
   bigPicture.querySelector('.comments-count').textContent = manyPhotos[0].comments.length; // ставим динамические коментарии из функции создания коментариев
+
+  document.querySelector('.social__caption').textContent = manyPhotos[0].description; // вставляем пустое описание фотографии
+  document.querySelector('.social__comment-count').classList.add('hidden'); // скрываем счетчик коментариев
+  document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
+  document.querySelector('body').classList.add('modal-open');
 }
 openLargePicture();
 
@@ -119,7 +124,4 @@ function renderCommentUser() {
 }
 renderCommentUser(); // вызываем функцию создания разметки
 
-document.querySelector('.social__caption').textContent = manyPhotos[0].description; // вставляем пустое описание фотографии
-document.querySelector('.social__comment-count').classList.add('hidden'); // скрываем счетчик коментариев
-document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
-document.querySelector('body').classList.add('modal-open');
+
