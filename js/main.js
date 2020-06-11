@@ -88,18 +88,18 @@ function renderPhotos(manyPhoto) {
 renderPhotos(manyPhotos);
 
 // функция открытия большой фотографии
-function largePicture() {
+function openLargePicture() {
   var bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
   bigPicture.querySelector('.big-picture__img img').src = manyPhotos[0].url; // ставим первое фото с массива фото
   bigPicture.querySelector('.likes-count').textContent = manyPhotos[0].likes; // ставим динамичесике лайки из функции создания количества случайных лайков
   bigPicture.querySelector('.comments-count').textContent = manyPhotos[0].comments.length; // ставим динамические коментарии из функции создания коментариев
 }
-largePicture();
+openLargePicture();
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
 var moreUserComment = manyPhotos[0].comments[0]; // записываем в переменную случайные коментарии и фото
-function commentUsers() {
+function renderCommentUser() {
 
   var newComment = document.createElement('li'); // создаем элемент списка "li", методом создания элемента и вносим в переменную
   newComment.classList.add('social__comment'); // добавляем класс для созданного "li"
@@ -117,7 +117,7 @@ function commentUsers() {
 
   return bigSocialComments.append(newComment); // возвращаем из функции в список "ul" полностью готовый "li" с "img" "p"
 }
-commentUsers(); // вызываем функцию создания разметки
+renderCommentUser(); // вызываем функцию создания разметки
 
 document.querySelector('.social__caption').textContent = manyPhotos[0].description; // вставляем пустое описание фотографии
 document.querySelector('.social__comment-count').classList.add('hidden'); // скрываем счетчик коментариев
