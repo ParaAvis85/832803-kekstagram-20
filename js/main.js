@@ -7,6 +7,7 @@ var MAX_LIKES_COUNT = 200; // максимальное количество ла
 var MIN_AVATAR_COUNT = 1; // минимальное число аватара
 var MAX_AVATAR_COUNT = 6; // максимальное число аватара
 var descriptionPhoto = ''; // описание фотографии пустое
+var COUNT_COMMENT = 6;
 // функция случайного коментария
 function messageRandom() {
   var messagesArray = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -26,7 +27,7 @@ function nameRandom() {
 // функция генерации случайных коментариев
 function getComments() {
   var comments = [];
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < COUNT_COMMENT; i++) {
     var comment = {
       avatar: 'img/avatar-' + getRandomCount(MIN_AVATAR_COUNT, MAX_AVATAR_COUNT) + '.svg', // это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg  где данные  в скобках контактенация цикла количества фото по количеству в задании
       message: messageRandom(), // один или два разных коменнтария добавить случайно что означает тут будет функция которая будет с циклом рандомайзером
@@ -100,7 +101,10 @@ function openLargePicture(photo) {
   document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
   document.querySelector('body').classList.add('modal-open');
 
-  renderComments(photo.comments[0]);// вызываем функцию создания разметки
+  for (var i = 0; i < photo.comments.length; i++) {
+    renderComments(photo.comments[i]);// вызываем функцию создания разметки
+  }
+
 }
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
