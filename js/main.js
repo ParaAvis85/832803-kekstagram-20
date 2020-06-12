@@ -88,23 +88,25 @@ function renderPhotos(manyPhoto) {
 renderPhotos(manyPhotos);
 
 // функция открытия большой фотографии
-function openLargePicture() {
+function openLargePicture(photo) {
   var bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
-  bigPicture.querySelector('.big-picture__img img').src = manyPhotos[0].url; // ставим первое фото с массива фото
-  bigPicture.querySelector('.likes-count').textContent = manyPhotos[0].likes; // ставим динамичесике лайки из функции создания количества случайных лайков
-  bigPicture.querySelector('.comments-count').textContent = manyPhotos[0].comments.length; // ставим динамические коментарии из функции создания коментариев
+  bigPicture.querySelector('.big-picture__img img').src = photo.url; // ставим первое фото с массива фото
+  bigPicture.querySelector('.likes-count').textContent = photo.likes; // ставим динамичесике лайки из функции создания количества случайных лайков
+  bigPicture.querySelector('.comments-count').textContent = photo.comments.length; // ставим динамические коментарии из функции создания коментариев
 
-  document.querySelector('.social__caption').textContent = manyPhotos[0].description; // вставляем пустое описание фотографии
+  document.querySelector('.social__caption').textContent = photo.description; // вставляем пустое описание фотографии
   document.querySelector('.social__comment-count').classList.add('hidden'); // скрываем счетчик коментариев
   document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
   document.querySelector('body').classList.add('modal-open');
+
+  renderComments(photo.comments[0]);// вызываем функцию создания разметки
 }
-openLargePicture();
+openLargePicture(manyPhotos[0]);
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
-var moreUserComment = manyPhotos[0].comments[0]; // записываем в переменную случайные коментарии и фото
-function renderCommentUser() {
+
+function renderComments(moreUserComment) {
 
   var newComment = document.createElement('li'); // создаем элемент списка "li", методом создания элемента и вносим в переменную
   newComment.classList.add('social__comment'); // добавляем класс для созданного "li"
@@ -122,6 +124,4 @@ function renderCommentUser() {
 
   return bigSocialComments.append(newComment); // возвращаем из функции в список "ul" полностью готовый "li" с "img" "p"
 }
-renderCommentUser(); // вызываем функцию создания разметки
-
 
