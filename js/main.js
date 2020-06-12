@@ -102,9 +102,9 @@ function openLargePicture(photo) {
 
   renderComments(photo.comments[0]);// вызываем функцию создания разметки
 }
-openLargePicture(manyPhotos[0]);
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
+openLargePicture(manyPhotos[0]);
 
 function renderComments(moreUserComment) {
 
@@ -124,4 +124,3 @@ function renderComments(moreUserComment) {
 
   return bigSocialComments.append(newComment); // возвращаем из функции в список "ul" полностью готовый "li" с "img" "p"
 }
-
