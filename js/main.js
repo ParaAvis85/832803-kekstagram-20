@@ -102,7 +102,7 @@ function openLargePicture(photo) {
   document.querySelector('body').classList.add('modal-open');
 
   for (var i = 0; i < photo.comments.length; i++) {
-    renderComments(photo.comments[i]);// вызываем функцию создания разметки
+    renderComment(photo.comments[i]);// вызываем функцию создания разметки
   }
 
 }
@@ -110,7 +110,7 @@ function openLargePicture(photo) {
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
 openLargePicture(manyPhotos[0]);
 
-function renderComments(moreUserComment) {
+function renderComment(moreUserComment) {
 
   var newComment = document.createElement('li'); // создаем элемент списка "li", методом создания элемента и вносим в переменную
   newComment.classList.add('social__comment'); // добавляем класс для созданного "li"
