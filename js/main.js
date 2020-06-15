@@ -108,7 +108,7 @@ function openLargePicture(photo) {
 }
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
-openLargePicture(manyPhotos[0]);
+// openLargePicture(manyPhotos[0]);
 
 function renderComment(moreUserComment) {
 
@@ -128,3 +128,24 @@ function renderComment(moreUserComment) {
 
   return bigSocialComments.append(newComment); // возвращаем из функции в список "ul" полностью готовый "li" с "img" "p"
 }
+
+// черновой вариант открытия скрытия фото для редактирования
+var upLoadInputField = document.querySelector('#upload-file');
+var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
+var buttonEditClose = document.querySelector('#upload-cancel');
+
+upLoadInputField.addEventListener('change', function () {
+  openOverlayChangeImage.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+});
+
+
+buttonEditClose.addEventListener('click', function () {
+  openOverlayChangeImage.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+});
+
+buttonEditClose.addEventListener('keydown', function () {
+  openOverlayChangeImage.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+});
