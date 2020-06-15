@@ -139,13 +139,15 @@ upLoadInputField.addEventListener('change', function () {
   document.body.classList.add('modal-open');
 });
 
-
-buttonEditClose.addEventListener('click', function () {
+buttonEditClose.addEventListener('click', function (evt) {
+  evt.preventDefault();
   openOverlayChangeImage.classList.add('hidden');
   document.body.classList.remove('modal-open');
 });
 
-buttonEditClose.addEventListener('keydown', function () {
-  openOverlayChangeImage.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+buttonEditClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 27 || evt.keyCode === 13) {
+    openOverlayChangeImage.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  }
 });
