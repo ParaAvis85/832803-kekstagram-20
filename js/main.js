@@ -8,6 +8,23 @@ var MIN_AVATAR_COUNT = 1; // минимальное число аватара
 var MAX_AVATAR_COUNT = 6; // максимальное число аватара
 var descriptionPhoto = ''; // описание фотографии пустое
 var COUNT_COMMENT = 6;
+
+
+var controlBigger = document.querySelector('.scale__control--bigger');
+var controlSmaller = document.querySelector('.scale__control--smaller');
+var controlValue = document.querySelector('.scale__control--value');
+var resizeImg = document.querySelector('.img-upload__preview img');
+
+var MIN_SCALE_VALUE = 25;
+var MAX_SCALE_VALUE = 100;
+var SCALE_STEP = 25;
+
+var upLoadInputField = document.querySelector('#upload-file');
+var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
+var buttonEditClose = document.querySelector('#upload-cancel');
+var resizeImage = document.querySelector('.img-upload__preview');
+var hashtagInput = document.querySelector('.text__hashtags');
+
 // функция случайного коментария
 function messageRandom() {
   var messagesArray = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -130,11 +147,6 @@ function renderComment(moreUserComment) {
 }
 
 // черновой вариант открытия скрытия фото для редактирования
-var upLoadInputField = document.querySelector('#upload-file');
-var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
-var buttonEditClose = document.querySelector('#upload-cancel');
-var resizeImage = document.querySelector('.img-upload__preview');
-var hashtagInput = document.querySelector('.text__hashtags');
 
 function openEditImageEscPress(evt) {
   if (evt.keyCode === 27 && evt.target !== hashtagInput) {
@@ -176,4 +188,36 @@ buttonEditClose.addEventListener('keydown', function (evt) {
 // обработчик с закрытием функции редактирования фото
 buttonEditClose.addEventListener('click', function () {
   closeEditPhoto();
+});
+
+// функция увеличения фоток
+function pictureIncreaseScale() {
+  var scaleValue = Number(controlValue.value.slice(0, -1));
+  scaleValue += SCALE_STEP;
+  if (scaleValue > MAX_SCALE_VALUE) {
+    scaleValue = MAX_SCALE_VALUE;
+  }
+  changePictureScale(scaleValue);
+}
+// функция уменьшения фоток
+function pictureDecreaseScale() {
+  var scaleValue = Number(controlValue.value.slice(0, -1));
+  scaleValue -= SCALE_STEP;
+  if (scaleValue <= MIN_SCALE_VALUE) {
+    scaleValue = MIN_SCALE_VALUE;
+  }
+  changePictureScale(scaleValue);
+}
+// счетчик размера
+function changePictureScale(value) {
+  controlValue.value = value + '%';
+  resizeImg.style.transform = 'scale(' + (value / 100) + ')';
+}
+// Обработчик увеличения фото
+controlBigger.addEventListener('click', function () {
+  pictureIncreaseScale();
+});
+// обработчик уменьшения фото
+controlSmaller.addEventListener('click', function () {
+  pictureDecreaseScale();
 });
