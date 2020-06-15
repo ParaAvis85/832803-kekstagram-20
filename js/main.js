@@ -133,21 +133,47 @@ function renderComment(moreUserComment) {
 var upLoadInputField = document.querySelector('#upload-file');
 var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
 var buttonEditClose = document.querySelector('#upload-cancel');
+var resizeImage = document.querySelector('.img-upload__preview');
+var hashtagInput = document.querySelector('.text__hashtags');
 
-upLoadInputField.addEventListener('change', function () {
+function openEditImageEscPress(evt) {
+  if (evt.keyCode === 27 && evt.target !== hashtagInput) {
+    evt.preventDefault();
+    closeEditPhoto();
+  }
+}
+
+// функция открытия редактора фото
+function openEditphoto() {
   openOverlayChangeImage.classList.remove('hidden');
   document.body.classList.add('modal-open');
-});
 
-buttonEditClose.addEventListener('click', function (evt) {
-  evt.preventDefault();
+  document.addEventListener('keydown', openEditImageEscPress);
+}
+
+// функция закрытия редактора фото
+function closeEditPhoto() {
   openOverlayChangeImage.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  upLoadInputField.value = '';
+  resizeImage.className = '';
+
+  document.removeEventListener('keydown', openEditImageEscPress);
+}
+
+// обработчик с вызовом функции отрытия редактора
+upLoadInputField.addEventListener('change', function () {
+  openEditphoto();
 });
 
+// обработчик закрытия через клавиши esc и enter
 buttonEditClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27 || evt.keyCode === 13) {
-    openOverlayChangeImage.classList.add('hidden');
-    document.body.classList.remove('modal-open');
+    closeEditPhoto();
   }
+});
+
+// обработчик с закрытием функции редактирования фото
+buttonEditClose.addEventListener('click', function () {
+  closeEditPhoto();
 });
