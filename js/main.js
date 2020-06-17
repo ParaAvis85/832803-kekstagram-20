@@ -190,7 +190,7 @@ buttonEditClose.addEventListener('click', function () {
   closeEditPhoto();
 });
 
-// функция увеличения фоток
+// функция увеличения фото
 function pictureIncreaseScale() {
   var scaleValue = Number(controlValue.value.slice(0, -1));
   scaleValue += SCALE_STEP;
@@ -199,7 +199,7 @@ function pictureIncreaseScale() {
   }
   changePictureScale(scaleValue);
 }
-// функция уменьшения фоток
+// функция уменьшения фото
 function pictureDecreaseScale() {
   var scaleValue = Number(controlValue.value.slice(0, -1));
   scaleValue -= SCALE_STEP;
@@ -220,4 +220,26 @@ controlBigger.addEventListener('click', function () {
 // обработчик уменьшения фото
 controlSmaller.addEventListener('click', function () {
   pictureDecreaseScale();
+});
+
+// добавление эффектов черновой вариант
+var effectLevelPin = document.querySelector('.effect-level__pin');
+var effectLevelValue = document.querySelector('.effect-level__value');
+var effectLevel;
+
+effectLevelPin.addEventListener('mouseup', function () {
+  effectLevel = Math.floor(effectLevelPin.offsetLeft / effectLevelPin.offsetParent.offsetWidth * 100);
+  effectLevelValue.value = effectLevel;
+});
+
+var effectsList = document.querySelector('.effects__list');
+var imgUploadPreview = document.querySelector('.img-upload__preview img');
+
+effectsList.addEventListener('click', function (evt) {
+  if (evt.target && evt.target.matches('input[type="radio"]')) {
+    imgUploadPreview.className = '';
+    var className = 'effects__preview--' + evt.target.value;
+    imgUploadPreview.classList.add(className);
+    effectLevelValue.value = 100;
+  }
 });
