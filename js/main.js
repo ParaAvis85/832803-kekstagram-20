@@ -243,3 +243,24 @@ effectsList.addEventListener('click', function (evt) {
     effectLevelValue.value = 100;
   }
 });
+
+// Валидация хеш-тегов
+var textHashtag = document.querySelector('.text__hashtags');
+var re = /^#[a-zA-Zа-яА-Я0-9]*$/;
+
+textHashtag.addEventListener('input', function () {
+  var textBlock = textHashtag.value;
+  var lotTextBlock = textBlock.split(' ');
+  var newlotTextBlock = lotTextBlock.filter(function (elem, pos) {
+    return lotTextBlock.indexOf(elem) === pos;
+  });
+
+  var filterMassTextFill = (newlotTextBlock.length !== lotTextBlock.length);
+  if (filterMassTextFill) {
+    textHashtag.setCustomValidity('Хештеги не должны повторяться! Пример: #tigrica');
+  } else if (re.test(textHashtag.value)) {
+    textHashtag.setCustomValidity('');
+  } else {
+    textHashtag.setCustomValidity('Неправильно набран хеш-тег! Пример: #tigrica');
+  }
+});
