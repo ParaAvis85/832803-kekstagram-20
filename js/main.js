@@ -106,6 +106,7 @@ function renderPhotos(manyPhoto) {
 renderPhotos(manyPhotos);
 
 // функция открытия большой фотографии
+// eslint-disable-next-line no-unused-vars
 function openLargePicture(photo) {
   var bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
@@ -125,7 +126,7 @@ function openLargePicture(photo) {
 }
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
-// openLargePicture(manyPhotos[0]);
+
 
 function renderComment(moreUserComment) {
 
