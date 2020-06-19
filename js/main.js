@@ -193,7 +193,7 @@ buttonEditClose.addEventListener('click', function () {
 
 // функция увеличения фото
 function pictureIncreaseScale() {
-  var scaleValue = Number(controlValue.value.slice(0, -1));
+  var scaleValue = parseInt(controlValue.value, 10);
   scaleValue += SCALE_STEP;
   if (scaleValue > MAX_SCALE_VALUE) {
     scaleValue = MAX_SCALE_VALUE;
@@ -202,7 +202,7 @@ function pictureIncreaseScale() {
 }
 // функция уменьшения фото
 function pictureDecreaseScale() {
-  var scaleValue = Number(controlValue.value.slice(0, -1));
+  var scaleValue = parseInt(controlValue.value, 10);
   scaleValue -= SCALE_STEP;
   if (scaleValue <= MIN_SCALE_VALUE) {
     scaleValue = MIN_SCALE_VALUE;
