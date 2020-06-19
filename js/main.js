@@ -125,7 +125,7 @@ function openLargePicture(photo) {
 }
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
-openLargePicture(manyPhotos[0]);
+// openLargePicture(manyPhotos[0]);
 
 function renderComment(moreUserComment) {
 
@@ -180,7 +180,7 @@ upLoadInputField.addEventListener('change', function () {
 
 // обработчик закрытия через клавиши esc и enter
 buttonEditClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 27 || evt.keyCode === 13) {
+  if (evt.keyCode === 13) {
     closeEditPhoto();
   }
 });
