@@ -229,7 +229,7 @@ var effectLevelValue = document.querySelector('.effect-level__value');
 var effectLevel;
 
 effectLevelPin.addEventListener('mouseup', function () {
-  effectLevel = Math.floor(effectLevelPin.offsetLeft / effectLevelPin.offsetParent.offsetWidth * 100);
+  effectLevel = Math.floor((effectLevelPin.offsetLeft + (effectLevelPin.offsetWidth / 2)) / effectLevelPin.offsetParent.offsetWidth * 100);
   effectLevelValue.value = effectLevel;
 });
 
