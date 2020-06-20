@@ -19,6 +19,9 @@ var MIN_SCALE_VALUE = 25;
 var MAX_SCALE_VALUE = 100;
 var SCALE_STEP = 25;
 
+var MAX_HASHTAGS = 5;
+var MAX_SYMBOL = 20;
+
 var upLoadInputField = document.querySelector('#upload-file');
 var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
 var buttonEditClose = document.querySelector('#upload-cancel');
@@ -260,12 +263,22 @@ textHashtag.addEventListener('input', function () {
     return lotTextBlock.indexOf(elem) === pos;
   });
 
+  // условие валидации хештегов
   var filterMassTextFill = (newlotTextBlock.length !== lotTextBlock.length);
   if (filterMassTextFill) {
     textHashtag.setCustomValidity('Хештеги не должны повторяться! Пример: #module');
+  } else if (newlotTextBlock.length > MAX_HASHTAGS) {
+    textHashtag.setCustomValidity('Максимальное количество хештегов 5шт!');
   } else if (re.test(textHashtag.value)) {
     textHashtag.setCustomValidity('');
   } else {
     textHashtag.setCustomValidity('Неправильно набран хеш-тег! Пример: #module');
+  }
+
+  for (var i = 0; i < newlotTextBlock.length; i++) {
+    if (newlotTextBlock[i].length > MAX_SYMBOL) {
+      textHashtag.setCustomValidity('Максимальное количество знаков 20шт включая #');
+      break;
+    }
   }
 });
