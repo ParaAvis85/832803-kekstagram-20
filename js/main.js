@@ -227,7 +227,7 @@ controlSmaller.addEventListener('click', function () {
 var effectLevelPin = document.querySelector('.effect-level__pin');
 var effectLevelValue = document.querySelector('.effect-level__value');
 var effectLevel;
-
+// расчет растояния пина от крайнего левого положения до центра пина
 effectLevelPin.addEventListener('mouseup', function () {
   effectLevel = Math.floor((effectLevelPin.offsetLeft + (effectLevelPin.offsetWidth / 2)) / effectLevelPin.offsetParent.offsetWidth * 100);
   effectLevelValue.value = effectLevel;
@@ -235,12 +235,16 @@ effectLevelPin.addEventListener('mouseup', function () {
 
 var effectsList = document.querySelector('.effects__list');
 var imgUploadPreview = document.querySelector('.img-upload__preview img');
-
+// функция извенения класса эффектов
+function setEffectClassName(value) {
+  imgUploadPreview.className = '';
+  var className = 'effects__preview--' + value;
+  imgUploadPreview.classList.add(className);
+}
+// обработчик события на клик для эффектов
 effectsList.addEventListener('click', function (evt) {
   if (evt.target && evt.target.matches('input[type="radio"]')) {
-    imgUploadPreview.className = '';
-    var className = 'effects__preview--' + evt.target.value;
-    imgUploadPreview.classList.add(className);
+    setEffectClassName(evt.target.value);
     effectLevelValue.value = 100;
   }
 });
