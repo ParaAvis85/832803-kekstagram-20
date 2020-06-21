@@ -20,6 +20,7 @@ var MAX_SCALE_VALUE = 100;
 var SCALE_STEP = 25;
 
 var MAX_HASHTAGS = 5;
+var MIN_SYMBOL = 2;
 var MAX_SYMBOL = 20;
 
 var upLoadInputField = document.querySelector('#upload-file');
@@ -266,7 +267,7 @@ textHashtag.addEventListener('input', function () {
   // условие валидации хештегов
   var filterMassTextFill = (newlotTextBlock.length !== lotTextBlock.length);
   if (filterMassTextFill) {
-    textHashtag.setCustomValidity('Хештеги не должны повторяться! Пример: #module');
+    textHashtag.setCustomValidity('Хештеги не должны повторяться!');
   } else if (newlotTextBlock.length > MAX_HASHTAGS) {
     textHashtag.setCustomValidity('Максимальное количество хештегов 5шт!');
   } else if (re.test(textHashtag.value)) {
@@ -277,8 +278,11 @@ textHashtag.addEventListener('input', function () {
 
   for (var i = 0; i < newlotTextBlock.length; i++) {
     if (newlotTextBlock[i].length > MAX_SYMBOL) {
-      textHashtag.setCustomValidity('Максимальное количество знаков 20шт включая #');
+      textHashtag.setCustomValidity('Максимальное количество знаков, не должно превышать 20шт включая знак #');
       break;
+    } else if (newlotTextBlock[i].length < MIN_SYMBOL) {
+      textHashtag.setCustomValidity('хеш-тег не может состоять из одного любого знака, включая знак #');
     }
+    break;
   }
 });
