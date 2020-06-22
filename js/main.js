@@ -281,7 +281,7 @@ textHashtag.addEventListener('input', function () {
       textHashtag.setCustomValidity('Максимальное количество знаков, не должно превышать 20шт включая знак #');
       break;
     } else if (newlotTextBlock[i].length < MIN_SYMBOL) {
-      textHashtag.setCustomValidity('хеш-тег не может состоять из одного любого знака, включая знак #');
+      textHashtag.setCustomValidity('Хештег не может состоять из одного "#"');
     }
     break;
   }
