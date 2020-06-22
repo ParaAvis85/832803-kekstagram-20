@@ -255,7 +255,7 @@ effectsList.addEventListener('click', function (evt) {
 
 // Валидация хеш-тегов
 var textHashtag = document.querySelector('.text__hashtags');
-var re = /(#[a-zA-Zа-яА-Я0-9] +){0,4}(#[a-zA-Zа-яА-Я0-9])?/;
+var re = /^(#[a-zA-Zа-яА-Я0-9]+ +){0,4}(#[a-zA-Zа-яА-Я0-9]+)?$/;
 
 textHashtag.addEventListener('input', function () {
   var textBlock = textHashtag.value;
