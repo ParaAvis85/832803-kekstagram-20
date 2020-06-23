@@ -108,11 +108,10 @@ function renderPhotos(manyPhoto) {
 
 }
 renderPhotos(manyPhotos);
-
+var bigPicture = document.querySelector('.big-picture');
 // функция открытия большой фотографии
 // eslint-disable-next-line no-unused-vars
 function openLargePicture(photo) {
-  var bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
   bigPicture.querySelector('.big-picture__img img').src = photo.url; // ставим первое фото с массива фото
   bigPicture.querySelector('.likes-count').textContent = photo.likes; // ставим динамичесике лайки из функции создания количества случайных лайков
@@ -286,3 +285,46 @@ textHashtag.addEventListener('input', function () {
     break;
   }
 });
+
+
+// module4-3
+var bigPictureCancel = document.querySelector('.big-picture__cancel');
+// открытие открытие по ентеру
+var onPreviewEnterPress = function (evt) {
+  if (evt.keyCode === 13) {
+    openPreviewBigPhoto();
+  }
+};
+// открытие фото по одному из превью
+function onCustomPhotoClick(evt) {
+  openPreviewBigPhoto();
+  var customPhoto = evt.target.attributes.src.value;
+  for (var i = 0; i < manyPhotos.length; i++) {
+    if (customPhoto === manyPhotos[i].url) {
+      createPhoto(manyPhotos[i]);
+    }
+  }
+}
+// просмотр большого фото
+function openPreviewBigPhoto() {
+  bigPicture.classList.remove('hidden');
+  document.querySelector('body').classList.add('modal-open');
+  document.addEventListener('keydown', openEditImageEscPress);
+  bigPictureCancel.addEventListener('click', function () {
+    closePreviewBigPhoto();
+  });
+  bigPictureCancel.addEventListener('keydown', openEditImageEscPress);
+}
+// Закрытие большого фото
+function closePreviewBigPhoto() {
+  bigPicture.classList.add('hidden');
+  document.querySelector('body').classList.remove('modal-open');
+  document.removeEventListener('keydown', openEditImageEscPress);
+  bigPictureCancel.removeEventListener('click', function () {
+    closePreviewBigPhoto();
+  });
+  bigPictureCancel.removeEventListener('keydown', openEditImageEscPress);
+}
+// обработчики для случайных фото
+photosList.addEventListener('click', onCustomPhotoClick);
+photosList.addEventListener('keydown', onPreviewEnterPress);
