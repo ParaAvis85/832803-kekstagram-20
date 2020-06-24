@@ -301,7 +301,7 @@ function onCustomPhotoClick(evt) {
   var customPhoto = evt.target.attributes.src.value;
   for (var i = 0; i < manyPhotos.length; i++) {
     if (customPhoto === manyPhotos[i].url) {
-      createPhoto(manyPhotos[i]);
+      openLargePicture(manyPhotos[i]);
     }
   }
 }
