@@ -71,6 +71,7 @@ function getPhotos() {
   var photosInfoCount = []; // переменая и пустой массив выдает заданное в цикле число
   for (var i = 0; i < PHOTOS_COUNT; i++) {
     var photosScetch = {
+      id: i,
       url: 'photos/' + (i + 1) + '.jpg', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
       description: descriptionPhoto,
       likes: getRandomCount(MIN_LIKES_COUNT, MAX_LIKES_COUNT), // здесь добавить из будущей  внешней функции которая через цикл создаст количество лайков случайно от 15 до 200.
@@ -94,6 +95,7 @@ function createPhoto(photo) {
   photoItem.querySelector('.picture__img').src = photo.url; // ищем и вносим фото в шаблон
   photoItem.querySelector('.picture__comments').textContent = photo.comments.length; // ищем и вносим коментарии в шаблн
   photoItem.querySelector('.picture__likes').textContent = photo.likes; // ищем и вносим количество лайков в шаблон
+  photoItem.dataset.id = photo.id;
   return photoItem;
 }
 
@@ -122,10 +124,12 @@ function openLargePicture(photo) {
   document.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
   document.querySelector('body').classList.add('modal-open');
 
+  bigSocialComments.innerHTML = '';
   for (var i = 0; i < photo.comments.length; i++) {
     renderComment(photo.comments[i]);// вызываем функцию создания разметки
   }
-
+  document.addEventListener('keydown', onEscapePress);
+  bigPictureCancel.addEventListener('click', closeLargePicture);
 }
 
 var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
@@ -292,38 +296,34 @@ var bigPictureCancel = document.querySelector('.big-picture__cancel');
 // открытие открытие по ентеру
 var onPreviewEnterPress = function (evt) {
   if (evt.keyCode === 13) {
-    openPreviewBigPhoto();
+    var picture = evt.target.closest('.picture');
+    if (picture) {
+      var id = picture.dataset.id;
+      openLargePicture(manyPhotos[id]);
+    }
+
   }
 };
 // открытие фото по одному из превью
 function onCustomPhotoClick(evt) {
-  openPreviewBigPhoto();
-  var customPhoto = evt.target.attributes.src.value;
-  for (var i = 0; i < manyPhotos.length; i++) {
-    if (customPhoto === manyPhotos[i].url) {
-      openLargePicture(manyPhotos[i]);
-    }
+  var picture = evt.target.closest('.picture');
+  if (picture) {
+    var id = picture.dataset.id;
+    openLargePicture(manyPhotos[id]);
   }
 }
-// просмотр большого фото
-function openPreviewBigPhoto() {
-  bigPicture.classList.remove('hidden');
-  document.querySelector('body').classList.add('modal-open');
-  document.addEventListener('keydown', openEditImageEscPress);
-  bigPictureCancel.addEventListener('click', function () {
-    closePreviewBigPhoto();
-  });
-  bigPictureCancel.addEventListener('keydown', openEditImageEscPress);
+
+function onEscapePress(evt) {
+  if (evt.keyCode === 27) {
+    closeLargePicture();
+  }
 }
 // Закрытие большого фото
-function closePreviewBigPhoto() {
+function closeLargePicture() {
   bigPicture.classList.add('hidden');
-  document.querySelector('body').classList.remove('modal-open');
-  document.removeEventListener('keydown', openEditImageEscPress);
-  bigPictureCancel.removeEventListener('click', function () {
-    closePreviewBigPhoto();
-  });
-  bigPictureCancel.removeEventListener('keydown', openEditImageEscPress);
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscapePress);
+  bigPictureCancel.removeEventListener('keydown', closeLargePicture);
 }
 // обработчики для случайных фото
 photosList.addEventListener('click', onCustomPhotoClick);
