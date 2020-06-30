@@ -4,8 +4,7 @@ var descriptionPhoto = ''; // описание фотографии пустое
 
 var controlBigger = document.querySelector('.scale__control--bigger');
 var controlSmaller = document.querySelector('.scale__control--smaller');
-var controlValue = document.querySelector('.scale__control--value');
-var resizeImg = document.querySelector('.img-upload__preview img');
+
 
 var upLoadInputField = document.querySelector('#upload-file');
 var openOverlayChangeImage = document.querySelector('.img-upload__overlay');
@@ -128,36 +127,14 @@ buttonEditClose.addEventListener('click', function () {
   closeEditPhoto();
 });
 
-// функция увеличения фото
-function pictureIncreaseScale() {
-  var scaleValue = parseInt(controlValue.value, 10);
-  scaleValue += window.constant.SCALE_STEP;
-  if (scaleValue > window.constant.MAX_SCALE_VALUE) {
-    scaleValue = window.constant.MAX_SCALE_VALUE;
-  }
-  changePictureScale(scaleValue);
-}
-// функция уменьшения фото
-function pictureDecreaseScale() {
-  var scaleValue = parseInt(controlValue.value, 10);
-  scaleValue -= window.constant.SCALE_STEP;
-  if (scaleValue <= window.constant.MIN_SCALE_VALUE) {
-    scaleValue = window.constant.MIN_SCALE_VALUE;
-  }
-  changePictureScale(scaleValue);
-}
-// счетчик размера
-function changePictureScale(value) {
-  controlValue.value = value + '%';
-  resizeImg.style.transform = 'scale(' + (value / 100) + ')';
-}
+
 // Обработчик увеличения фото
 controlBigger.addEventListener('click', function () {
-  pictureIncreaseScale();
+  window.editPhoto.pictureIncreaseScale();
 });
 // обработчик уменьшения фото
 controlSmaller.addEventListener('click', function () {
-  pictureDecreaseScale();
+  window.editPhoto.pictureDecreaseScale();
 });
 
 // добавление эффектов черновой вариант
@@ -171,17 +148,11 @@ effectLevelPin.addEventListener('mouseup', function () {
 });
 
 var effectsList = document.querySelector('.effects__list');
-var imgUploadPreview = document.querySelector('.img-upload__preview img');
-// функция извенения класса эффектов
-function setEffectClassName(value) {
-  imgUploadPreview.className = '';
-  var className = 'effects__preview--' + value;
-  imgUploadPreview.classList.add(className);
-}
+
 // обработчик события на клик для эффектов
 effectsList.addEventListener('click', function (evt) {
   if (evt.target && evt.target.matches('input[type="radio"]')) {
-    setEffectClassName(evt.target.value);
+    window.editPhoto.setEffectClassName(evt.target.value);
     effectLevelValue.value = 100;
   }
 });
