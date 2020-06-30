@@ -32,9 +32,9 @@ function nameRandom() {
 // функция генерации случайных коментариев
 function getComments() {
   var comments = [];
-  for (var i = 0; i < window.constant.countComment; i++) {
+  for (var i = 0; i < window.constant.COUNT_COMMENT; i++) {
     var comment = {
-      avatar: 'img/avatar-' + getRandomCount(window.constant.minAvatarCount, window.constant.maxAvatarCount) + '.svg', // это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg  где данные  в скобках контактенация цикла количества фото по количеству в задании
+      avatar: 'img/avatar-' + getRandomCount(window.constant.MIN_AVATAR_COUNT, window.constant.MAX_AVATAR_COUNT) + '.svg', // это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg  где данные  в скобках контактенация цикла количества фото по количеству в задании
       message: messageRandom(), // один или два разных коменнтария добавить случайно что означает тут будет функция которая будет с циклом рандомайзером
       name: nameRandom() // вызов функции случайных имен
     };
@@ -53,12 +53,12 @@ function getRandomCount(min, max) {
 // функция создания фото
 function getPhotos() {
   var photosInfoCount = []; // переменая и пустой массив выдает заданное в цикле число
-  for (var i = 0; i < window.constant.photosCount; i++) {
+  for (var i = 0; i < window.constant.PHOTOS_COUNT; i++) {
     var photosScetch = {
       id: i,
       url: 'photos/' + (i + 1) + '.jpg', // здесь будет адресс фото photos/{{i}}.jpg где i = контактенация цикла количества фото по количеству в задании.
       description: descriptionPhoto,
-      likes: getRandomCount(window.constant.minLikesCount, window.constant.maxLikesCount), // здесь добавить из будущей  внешней функции которая через цикл создаст количество лайков случайно от 15 до 200.
+      likes: getRandomCount(window.constant.MIN_LIKES_COUNT, window.constant.MAX_LIKES_COUNT), // здесь добавить из будущей  внешней функции которая через цикл создаст количество лайков случайно от 15 до 200.
       comments: getComments()
     };
     photosInfoCount.push(photosScetch); // обьект  который добавляем в массив через цикл.
@@ -74,7 +74,7 @@ var photosList = document.querySelector('.pictures'); //  ищем список 
 function renderPhotos(manyPhoto) {
   var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
   // цикл отрисовки массива в фото из переменной
-  for (var i = 0; i < window.constant.photosCount; i++) {
+  for (var i = 0; i < window.constant.PHOTOS_COUNT; i++) {
     templateFragment.appendChild(window.createPhoto(manyPhoto[i]));
   }
 
@@ -131,18 +131,18 @@ buttonEditClose.addEventListener('click', function () {
 // функция увеличения фото
 function pictureIncreaseScale() {
   var scaleValue = parseInt(controlValue.value, 10);
-  scaleValue += window.constant.scaleStep;
-  if (scaleValue > window.constant.maxScaleValue) {
-    scaleValue = window.constant.maxScaleValue;
+  scaleValue += window.constant.SCALE_STEP;
+  if (scaleValue > window.constant.MAX_SCALE_VALUE) {
+    scaleValue = window.constant.MAX_SCALE_VALUE;
   }
   changePictureScale(scaleValue);
 }
 // функция уменьшения фото
 function pictureDecreaseScale() {
   var scaleValue = parseInt(controlValue.value, 10);
-  scaleValue -= window.constant.scaleStep;
-  if (scaleValue <= window.constant.minScaleValue) {
-    scaleValue = window.constant.minScaleValue;
+  scaleValue -= window.constant.SCALE_STEP;
+  if (scaleValue <= window.constant.MIN_SCALE_VALUE) {
+    scaleValue = window.constant.MIN_SCALE_VALUE;
   }
   changePictureScale(scaleValue);
 }
