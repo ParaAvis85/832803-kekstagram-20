@@ -28,7 +28,7 @@
   // обработчик события на клик для эффектов
   effectsList.addEventListener('click', function (evt) {
     if (evt.target && evt.target.matches('input[type="radio"]')) {
-      window.editPhoto.setEffectClassName(evt.target.value);
+      setEffectClassName(evt.target.value);
       effectLevelValue.value = 100;
     }
   });
@@ -79,11 +79,11 @@
 
   // Обработчик увеличения фото
   controlBigger.addEventListener('click', function () {
-    window.editPhoto.pictureIncreaseScale();
+    pictureIncreaseScale();
   });
   // обработчик уменьшения фото
   controlSmaller.addEventListener('click', function () {
-    window.editPhoto.pictureDecreaseScale();
+    pictureDecreaseScale();
   });
 
   // функция извенения класса эффектов
@@ -116,9 +116,4 @@
     resizeImg.style.transform = 'scale(' + (value / 100) + ')';
   }
 
-  window.editPhoto = {
-    setEffectClassName: setEffectClassName,
-    pictureIncreaseScale: pictureIncreaseScale,
-    pictureDecreaseScale: pictureDecreaseScale,
-  };
 })();
