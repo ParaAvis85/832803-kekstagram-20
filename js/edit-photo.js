@@ -99,31 +99,33 @@
     resizeImg.style.transform = 'scale(' + (value / 100) + ')';
   }
 
-
-  var setFilterValue = function (filterName, percent) {
-    if (filterName === 'none') {
-      imgUploadPreview.style.filter = '';
+  function setFilterValue(filterName, percent) {
+    switch (filterName) {
+      case 'none':
+        imgUploadPreview.style.filter = '';
+        break;
+      case 'chrome':
+        imgUploadPreview.style.filter = 'grayscale(' + percent / 100 + ')';
+        break;
+      case 'sepia':
+        imgUploadPreview.style.filter = 'sepia(' + percent / 100 + ')';
+        break;
+      case 'marvin':
+        imgUploadPreview.style.filter = 'invert(' + percent + '%)';
+        break;
+      case 'phobos':
+        imgUploadPreview.style.filter = 'blur(' + (percent * 3 / 100) + 'px)';
+        break;
+      case 'heat':
+        imgUploadPreview.style.filter = 'brightness(' + percent * 3 / 100 + ')';
+        break;
     }
-    if (filterName === 'chrome') {
-      imgUploadPreview.style.filter = 'grayscale(' + percent / 100 + ')';
-    }
-    if (filterName === 'sepia') {
-      imgUploadPreview.style.filter = 'sepia(' + percent / 100 + ')';
-    }
-    if (filterName === 'marvin') {
-      imgUploadPreview.style.filter = 'invert(' + percent + '%)';
-    }
-    if (filterName === 'phobos') {
-      imgUploadPreview.style.filter = 'blur(' + (percent * 3 / 100) + 'px)';
-    }
-    if (filterName === 'heat') {
-      imgUploadPreview.style.filter = 'brightness(' + percent * 3 / 100 + ')';
-    }
-  };
+  }
 
   imgUploadEffectLevel.classList.add('hidden');
 
-  var filterChange = function (evt) {
+  function filterChange(evt) {
+    // currentEffect = evt.target.value;
     effectLevelValue.value = 100;
     effectLevelPin.style.left = 100 + '%';
     effectLevelDepth.style.width = 100 + '%';
@@ -135,21 +137,21 @@
     } else {
       imgUploadEffectLevel.classList.add('hidden');
     }
-  };
+  }
   effectsList.addEventListener('change', filterChange);
 
-  var getLevelPin = function () {
+  function getLevelPin() {
     var positionX = effectLevelPin.offsetLeft;
     var lineWidth = effectLevelLine.offsetWidth;
     var percent = Math.round(100 * positionX / lineWidth);
     effectLevelValue.value = percent;
     return percent;
-  };
+  }
 
-  var changeFilterValue = function () {
+  function changeFilterValue() {
     var current = document.querySelector('.effects__radio:checked');
     setFilterValue(current.value, getLevelPin());
-  };
+  }
 
   effectLevelPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -159,7 +161,7 @@
       y: evt.clientY
     };
 
-    var onMouseMove = function (moveEvt) {
+    function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -180,13 +182,13 @@
         effectLevelDepth.style.width = (effectLevelPin.offsetLeft - shift.x) + 'px';
       }
       changeFilterValue();
-    };
+    }
 
-    var onMouseUp = function (upEvt) {
+    function onMouseUp(upEvt) {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
-    };
+    }
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
