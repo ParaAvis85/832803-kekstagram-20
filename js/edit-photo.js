@@ -125,7 +125,6 @@
   imgUploadEffectLevel.classList.add('hidden');
 
   function filterChange(evt) {
-    // currentEffect = evt.target.value;
     effectLevelValue.value = 100;
     effectLevelPin.style.left = 100 + '%';
     effectLevelDepth.style.width = 100 + '%';
