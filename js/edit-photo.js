@@ -100,7 +100,7 @@
   }
 
 
-  var getFilterValue = function (filterName, percent) {
+  var setFilterValue = function (filterName, percent) {
     if (filterName === 'none') {
       imgUploadPreview.style.filter = '';
     }
@@ -148,7 +148,7 @@
 
   var changeFilterValue = function () {
     var current = document.querySelector('.effects__radio:checked');
-    getFilterValue(current.value, getLevelPin());
+    setFilterValue(current.value, getLevelPin());
   };
 
   effectLevelPin.addEventListener('mousedown', function (evt) {
