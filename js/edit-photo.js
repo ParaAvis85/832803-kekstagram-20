@@ -156,19 +156,16 @@
     evt.preventDefault();
     var lineWidth = effectLevelLine.offsetWidth;
     var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
+      x: evt.clientX
     };
 
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
       var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y
+        x: startCoords.x - moveEvt.clientX
       };
       startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+        x: moveEvt.clientX
       };
       if (effectLevelPin.offsetLeft < 0) {
         effectLevelPin.style.left = 0 + 'px';
