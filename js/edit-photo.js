@@ -128,7 +128,7 @@
     effectLevelValue.value = 100;
     effectLevelPin.style.left = 100 + '%';
     effectLevelDepth.style.width = 100 + '%';
-    imgUploadPreview.classList = '';
+    imgUploadPreview.className = '';
     imgUploadPreview.style.filter = '';
     imgUploadPreview.classList.add('effects__preview--' + evt.target.value);
     if (evt.target.value !== 'none') {
