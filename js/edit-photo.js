@@ -143,13 +143,14 @@
     var positionX = effectLevelPin.offsetLeft;
     var lineWidth = effectLevelLine.offsetWidth;
     var percent = Math.round(100 * positionX / lineWidth);
-    effectLevelValue.value = percent;
     return percent;
   }
 
   function changeFilterValue() {
     var current = document.querySelector('.effects__radio:checked');
-    setFilterValue(current.value, getLevelPin());
+    var percent = getLevelPin();
+    effectLevelValue.value = percent;
+    setFilterValue(current.value, percent);
   }
 
   effectLevelPin.addEventListener('mousedown', function (evt) {
