@@ -124,7 +124,7 @@
 
   imgUploadEffectLevel.classList.add('hidden');
 
-  function filterChange(evt) {
+  function resetCurrentEffect(evt) {
     effectLevelValue.value = 100;
     effectLevelPin.style.left = 100 + '%';
     effectLevelDepth.style.width = 100 + '%';
@@ -137,7 +137,7 @@
       imgUploadEffectLevel.classList.add('hidden');
     }
   }
-  effectsList.addEventListener('change', filterChange);
+  effectsList.addEventListener('change', resetCurrentEffect);
 
   function getLevelPin() {
     var positionX = effectLevelPin.offsetLeft;
