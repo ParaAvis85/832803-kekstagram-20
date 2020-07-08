@@ -142,7 +142,7 @@
   function getLevelPin() {
     var positionX = effectLevelPin.offsetLeft;
     var lineWidth = effectLevelLine.offsetWidth;
-    var percent = Math.round((positionX + (lineWidth / 2)) / lineWidth * 100);
+    var percent = Math.round(100 * positionX / lineWidth);
     return percent;
   }
 
