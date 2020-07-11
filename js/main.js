@@ -3,7 +3,7 @@
 
   // выводим данные в консоль из функции создания массива из обьекта
 
-  var manyPhotos = window.data.getPhotos(); // переменная массива фото берет данные из функции создания фото.
+  var manyPhotos = window.load.download(onSuccess, onError); // переменная массива фото берет данные из функции создания фото.
   var photosList = document.querySelector('.pictures'); //  ищем список фото
 
   function renderPhotos(manyPhoto) {
@@ -16,8 +16,18 @@
     photosList.appendChild(templateFragment); // добавляем фрагмент с нужным количеством фото на страницу
 
   }
-  renderPhotos(manyPhotos);
 
+  function onSuccess(pictures) {
+    renderPhotos(pictures);
+  }
+
+  function onError(errorMessage) {
+    var main = document.querySelector('main');
+    var errorBlock = document.createElement('div');
+    errorBlock.classList.add('error-block');
+    errorBlock.textContent = errorMessage;
+    main.insertAdjacentElement('afterbegin', errorBlock);
+  }
   // module4-3
 
   // открытие открытие по ентеру
