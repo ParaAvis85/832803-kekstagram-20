@@ -12,7 +12,8 @@
     INTERNAL_SERVER_ERROR: 500
   };
 
-  function createXHR(onSuccess, onError) {
+  function createXHR(url, method, onSuccess, onError, data) {
+    data = data || null;
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -49,8 +50,9 @@
     });
 
     xhr.timeout = TIME_OUT;
+    xhr.open(method, url);
 
-    return xhr;
+    xhr.send(data);
   }
 
   window.load = {
@@ -62,4 +64,3 @@
     }
   };
 })();
-
