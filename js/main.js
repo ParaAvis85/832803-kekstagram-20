@@ -36,29 +36,6 @@
     errorBlock.textContent = errorMessage;
     main.insertAdjacentElement('afterbegin', errorBlock);
   }
-  // module4-3
-
-  // открытие открытие по ентеру
-  // var onPreviewEnterPress = function (evt) {
-  //   if (evt.keyCode === 13) {
-  //     var picture = evt.target.closest('.picture');
-  //     if (picture) {
-  //       var id = picture.dataset.id;
-  //       window.bigPicture.open(pictures[id]);
-  //       document.addEventListener('keydown', onEscapePress);
-  //     }
-  //   }
-  // };
-
-  // открытие фото по одному из превью
-  // function onCustomPhotoClick(evt) {
-  //   // var picture = evt.target.closest('.picture');
-  //   // if (picture) {
-  //   //   var id = picture.dataset.id;
-  //   //   window.bigPicture.open(manyPhotos[id]);
-  //   //   document.addEventListener('keydown', onEscapePress);
-  //   // }
-  // }
 
   function onEscapePress(evt) {
     if (evt.keyCode === 27) {
@@ -66,8 +43,4 @@
       document.removeEventListener('keydown', onEscapePress);
     }
   }
-
-  // обработчики для случайных фото
-  // photosList.addEventListener('click', onCustomPhotoClick);
-  // photosList.addEventListener('keydown', onPreviewEnterPress);
 })();
