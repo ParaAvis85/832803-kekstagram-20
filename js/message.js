@@ -19,7 +19,7 @@
 
   function deleteMessage(wrap) {
     window.onPopupEscPress = function (evt) {
-      window.utils.isEscEvent(evt, function () {
+      window.editphoto.closePopup(evt, function () {
         removeMessage(wrap);
       });
     };

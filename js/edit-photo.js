@@ -190,4 +190,8 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.editphoto = {
+    closePopup: closeEditPhoto
+  };
 })();

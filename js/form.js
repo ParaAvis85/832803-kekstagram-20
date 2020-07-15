@@ -43,10 +43,10 @@
 
   form.addEventListener('submit', function (evt) {
     window.load.upload(new FormData(form), function () {
-      window.bigPicture.close();
+      window.editphoto.closePopup();
       window.messages.openSuccessMessage();
     }, function () {
-      window.bigPicture.close();
+      window.editphoto.closePopup();
       window.messages.openErrorMessage();
     });
     evt.preventDefault();
