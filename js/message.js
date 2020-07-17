@@ -17,7 +17,7 @@
     document.removeEventListener('keydown', window.onPopupEscPress);
   }
 
-  function deleteMessage(wrap) {
+  function closeMessage(wrap) {
     window.onPopupEscPress = function (evt) {
       window.editphoto.closePopup(evt, function () {
         removeMessage(wrap);
@@ -40,12 +40,12 @@
     },
     openSuccessMessage: function () {
       main.appendChild(successWrap);
-      deleteMessage(successWrap);
+      closeMessage(successWrap);
       document.addEventListener('keydown', window.onPopupEscPress);
     },
     openErrorMessage: function () {
       main.appendChild(errorWrap);
-      deleteMessage(errorWrap);
+      closeMessage(errorWrap);
       document.addEventListener('keydown', window.onPopupEscPress);
     }
   };
