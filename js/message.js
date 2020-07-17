@@ -1,5 +1,8 @@
 'use strict';
 (function () {
+  var onPopupEscPress = function onPopupEscPress() {
+    window.editphoto.closePopup()
+  }
   var main = document.querySelector('main');
   var successTemplate = document.querySelector('#success')
     .content
@@ -14,15 +17,10 @@
     if (main.contains(wrap)) {
       main.removeChild(wrap);
     }
-    document.removeEventListener('keydown', window.onPopupEscPress);
+    document.removeEventListener('keydown', onPopupEscPress);
   }
 
-  function closeMessage(wrap) {
-    window.onPopupEscPress = function (evt) {
-      window.editphoto.closePopup(evt, function () {
-        removeMessage(wrap);
-      });
-    };
+  function setCloseMessageHandler(wrap) {
     wrap.addEventListener('click', function (evt) {
       if (evt.target === wrap || evt.target === wrap.querySelector('button')) {
         removeMessage(wrap);
@@ -32,21 +30,16 @@
   }
 
   window.messages = {
-    errorHandler: function (errorMessage) {
-      var node = document.createElement('div');
-      var error = node.classList.add('error__message');
-      node.textContent = errorMessage;
-      error.body.appendChild('afterbegin', node);
-    },
+
     openSuccessMessage: function () {
       main.appendChild(successWrap);
-      closeMessage(successWrap);
-      document.addEventListener('keydown', window.onPopupEscPress);
+      setCloseMessageHandler(successWrap);
+      document.addEventListener('keydown', onPopupEscPress);
     },
     openErrorMessage: function () {
       main.appendChild(errorWrap);
-      closeMessage(errorWrap);
-      document.addEventListener('keydown', window.onPopupEscPress);
+      setCloseMessageHandler(errorWrap);
+      document.addEventListener('keydown', onPopupEscPress);
     }
   };
 })();
