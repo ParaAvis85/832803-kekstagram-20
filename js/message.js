@@ -34,13 +34,9 @@
   window.messages = {
     errorHandler: function (errorMessage) {
       var node = document.createElement('div');
-      node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-      node.style.position = 'absolute';
-      node.style.left = 0;
-      node.style.right = 0;
-      node.style.fontSize = '20px';
+      var error = node.classList.add('error__message');
       node.textContent = errorMessage;
-      document.body.insertAdjacentElement('afterbegin', node);
+      error.body.appendChild('afterbegin', node);
     },
     openSuccessMessage: function () {
       main.appendChild(successWrap);
