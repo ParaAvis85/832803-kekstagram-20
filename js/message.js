@@ -1,8 +1,12 @@
 'use strict';
 (function () {
-  var onPopupEscPress = function onPopupEscPress() {
-    window.editphoto.closePopup()
-  }
+  var onPopupEscPress = function onPopupEscPress(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      errorWrap.remove();
+      successWrap.remove();
+    }
+  };
   var main = document.querySelector('main');
   var successTemplate = document.querySelector('#success')
     .content
