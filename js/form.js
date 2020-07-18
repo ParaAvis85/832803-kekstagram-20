@@ -9,6 +9,7 @@
   var MAX_HASHTAGS = 5;
   var textHashtag = document.querySelector('.text__hashtags');
   var re = /^(#[a-zA-Zа-яА-Я0-9]+ +){0,4}(#[a-zA-Zа-яА-Я0-9]+)?$/;
+  var form = document.querySelector('.img-upload__form');
 
   textHashtag.addEventListener('input', function () {
     var textBlock = textHashtag.value;
@@ -38,5 +39,16 @@
       }
       break;
     }
+  });
+
+  form.addEventListener('submit', function (evt) {
+    window.load.upload(new FormData(form), function () {
+      window.editphoto.closePopup();
+      window.messages.openSuccessMessage();
+    }, function () {
+      window.editphoto.closePopup();
+      window.messages.openErrorMessage();
+    });
+    evt.preventDefault();
   });
 })();
