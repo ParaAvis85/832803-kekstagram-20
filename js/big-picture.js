@@ -5,7 +5,7 @@
   var bigSocialComments = document.querySelector('.social__comments'); // ищем список коментариев ul
   var bigPictureCancel = document.querySelector('.big-picture__cancel');
   // функция открытия большой фотографии
-  // eslint-disable-next-line no-unused-vars
+
   function openLargePicture(photo) {
     bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
     bigPicture.querySelector('.big-picture__img img').src = photo.url; // ставим первое фото с массива фото
@@ -21,7 +21,6 @@
     for (var i = 0; i < photo.comments.length; i++) {
       renderComment(photo.comments[i]);// вызываем функцию создания разметки
     }
-    // document.addEventListener('keydown', onEscapePress);
     bigPictureCancel.addEventListener('click', closeLargePicture);
   }
 
