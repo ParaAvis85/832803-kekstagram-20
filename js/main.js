@@ -44,71 +44,71 @@
       document.removeEventListener('keydown', onEscapePress);
     }
   }
-// Функция создания копии массива фотографий с сервера
-function getDefaultPictures(pictures) {
-  return pictures.slice();
-}
-
-// Функция нахождения 10 случайных неповторяющихся фотографий
-function getRandomPictures(pictures) {
-  var randomUniqueArray = window.util.getUniqueArray(0, pictures.length);
-  var randomPictures = [];
-  randomUniqueArray.forEach(function (item) {
-    return randomPictures.push(pictures[item]);
-  });
-  return randomPictures;
-}
-
-// Функция нахождения самых обсуждаемых фотографий (сортировка)
-function getDiscussionPictures(pictures) {
-  var sortCommentPictures = pictures.slice();
-  sortCommentPictures.sort(function (a, b) {
-    return b.comments.length - a.comments.length;
-  });
-  return sortCommentPictures;
-}
-
-// Функция обработки кликов по кнопкам-фильтрам
-function clickFilterButton(photos) {
-  var buttons = imgFilters.querySelectorAll('button');
-  var sortPictures = [];
-
-  var onButtonDefaultClick = window.debounce.debounce(function (evt) {
-    onButtonClick(getDefaultPictures, evt);
-  });
-
-  var onButtonRandomClick = window.debounce.debounce(function (evt) {
-    onButtonClick(getRandomPictures, evt);
-  });
-
-  var onButtonDiscussionClick = window.debounce.debounce(function (evt) {
-    onButtonClick(getDiscussionPictures, evt);
-  });
-
-  function onButtonClick(callback, evt) {
-    evt.preventDefault();
-    var target = evt.target;
-    if (target.type === 'button') {
-      var activeButton = imgFilters.querySelector('.img-filters__button--active');
-      activeButton.classList.remove('img-filters__button--active');
-      target.classList.add('img-filters__button--active');
-      window.util.clearGallery('.picture', photosList);
-      sortPictures = callback(photos);
-      renderPhotos(sortPictures, photosList);
-
-    }
+  // Функция создания копии массива фотографий с сервера
+  function getDefaultPictures(pictures) {
+    return pictures.slice();
   }
 
-  function addEventElement(element, elementId, elementFunction) {
-    if (element.id === elementId) {
-      element.addEventListener('click', elementFunction);
-    }
+  // Функция нахождения 10 случайных неповторяющихся фотографий
+  function getRandomPictures(pictures) {
+    var randomUniqueArray = window.util.getUniqueArray(0, pictures.length);
+    var randomPictures = [];
+    randomUniqueArray.forEach(function (item) {
+      return randomPictures.push(pictures[item]);
+    });
+    return randomPictures;
   }
 
-  buttons.forEach(function (item) {
-    addEventElement(item, 'filter-default', onButtonDefaultClick);
-    addEventElement(item, 'filter-random', onButtonRandomClick);
-    addEventElement(item, 'filter-discussed', onButtonDiscussionClick);
-  });
-}
+  // Функция нахождения самых обсуждаемых фотографий (сортировка)
+  function getDiscussionPictures(pictures) {
+    var sortCommentPictures = pictures.slice();
+    sortCommentPictures.sort(function (a, b) {
+      return b.comments.length - a.comments.length;
+    });
+    return sortCommentPictures;
+  }
+
+  // Функция обработки кликов по кнопкам-фильтрам
+  function clickFilterButton(photos) {
+    var buttons = imgFilters.querySelectorAll('button');
+    var sortPictures = [];
+
+    var onButtonDefaultClick = window.debounce.debounce(function (evt) {
+      onButtonClick(getDefaultPictures, evt);
+    });
+
+    var onButtonRandomClick = window.debounce.debounce(function (evt) {
+      onButtonClick(getRandomPictures, evt);
+    });
+
+    var onButtonDiscussionClick = window.debounce.debounce(function (evt) {
+      onButtonClick(getDiscussionPictures, evt);
+    });
+
+    function onButtonClick(callback, evt) {
+      evt.preventDefault();
+      var target = evt.target;
+      if (target.type === 'button') {
+        var activeButton = imgFilters.querySelector('.img-filters__button--active');
+        activeButton.classList.remove('img-filters__button--active');
+        target.classList.add('img-filters__button--active');
+        window.util.clearGallery('.picture', photosList);
+        sortPictures = callback(photos);
+        renderPhotos(sortPictures, photosList);
+
+      }
+    }
+
+    function addEventElement(element, elementId, elementFunction) {
+      if (element.id === elementId) {
+        element.addEventListener('click', elementFunction);
+      }
+    }
+
+    buttons.forEach(function (item) {
+      addEventElement(item, 'filter-default', onButtonDefaultClick);
+      addEventElement(item, 'filter-random', onButtonRandomClick);
+      addEventElement(item, 'filter-discussed', onButtonDiscussionClick);
+    });
+  }
 })();
