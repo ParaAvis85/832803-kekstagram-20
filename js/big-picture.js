@@ -22,6 +22,7 @@
       renderComment(photo.comments[i]);// вызываем функцию создания разметки
     }
     bigPictureCancel.addEventListener('click', closeLargePicture);
+    window.commentsHandler();
   }
 
   // Закрытие большого фото
