@@ -32,14 +32,6 @@ window.util = (function () {
         }
       }
       return myArray.slice(0, 10);
-    },
-
-    // Функция очистки галереи
-    clearGallery: function (className, container) {
-      var picturesToRemove = document.querySelectorAll(className);
-      picturesToRemove.forEach(function (item) {
-        container.removeChild(item);
-      });
     }
   };
 })();

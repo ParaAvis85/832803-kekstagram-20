@@ -92,7 +92,7 @@
         var activeButton = imgFilters.querySelector('.img-filters__button--active');
         activeButton.classList.remove('img-filters__button--active');
         target.classList.add('img-filters__button--active');
-        window.util.clearGallery('.picture', photosList);
+        window.gallery.clearGallery('.picture', photosList);
         sortPictures = callback(photos);
         renderPhotos(sortPictures, photosList);
 
