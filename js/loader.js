@@ -2,7 +2,7 @@
 (function () {
   var COMMENTS_STEP = 5;
 
-  window.commentsHandler = function () {
+  window.getAddComments = function () {
     var bigPicture = document.querySelector('.big-picture');
     var commentsLoader = bigPicture.querySelector('.comments-loader');
     var socialCommentsWrapper = bigPicture.querySelector('.social__comments');
