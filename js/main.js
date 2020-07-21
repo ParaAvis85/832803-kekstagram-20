@@ -19,7 +19,7 @@
   function onSuccess(pictures) {
     renderPhotos(pictures, photosList);
     imgFilters.classList.remove('img-filters--inactive');
-    clickFilterButton(pictures);
+    window.sortermenu.clickFilterButton(pictures);
     photosList.addEventListener('click', function onCustomPhotoClick(evt) {
       var picture = evt.target.closest('.picture');
       if (picture) {
@@ -68,47 +68,11 @@
     return sortCommentPictures;
   }
 
-  // Функция обработки кликов по кнопкам-фильтрам
-  function clickFilterButton(photos) {
-    var buttons = imgFilters.querySelectorAll('button');
-    var sortPictures = [];
-
-    var onButtonDefaultClick = window.debounce.debounce(function (evt) {
-      onButtonClick(getDefaultPictures, evt);
-    });
-
-    var onButtonRandomClick = window.debounce.debounce(function (evt) {
-      onButtonClick(getRandomPictures, evt);
-    });
-
-    var onButtonDiscussionClick = window.debounce.debounce(function (evt) {
-      onButtonClick(getDiscussionPictures, evt);
-    });
-
-    function onButtonClick(callback, evt) {
-      evt.preventDefault();
-      var target = evt.target;
-      if (target.type === 'button') {
-        var activeButton = imgFilters.querySelector('.img-filters__button--active');
-        activeButton.classList.remove('img-filters__button--active');
-        target.classList.add('img-filters__button--active');
-        window.gallery.clearGallery('.picture', photosList);
-        sortPictures = callback(photos);
-        renderPhotos(sortPictures, photosList);
-
-      }
-    }
-
-    function addEventElement(element, elementId, elementFunction) {
-      if (element.id === elementId) {
-        element.addEventListener('click', elementFunction);
-      }
-    }
-
-    buttons.forEach(function (item) {
-      addEventElement(item, 'filter-default', onButtonDefaultClick);
-      addEventElement(item, 'filter-random', onButtonRandomClick);
-      addEventElement(item, 'filter-discussed', onButtonDiscussionClick);
-    });
-  }
+  window.main = {
+    getDefaultPictures: getDefaultPictures,
+    getRandomPictures: getRandomPictures,
+    getDiscussionPictures: getDiscussionPictures,
+    renderPhotos: renderPhotos
+  };
 })();
+
