@@ -1,9 +1,10 @@
 'use strict';
 (function () {
 
-  window.load.download(onSuccess, onError); // переменная массива фото берет данные из функции создания фото.
   var imgFilters = document.querySelector('.img-filters');
   var photosList = document.querySelector('.pictures'); //  ищем список фото
+  var main = document.querySelector('main');
+  var errorBlock = document.createElement('div');
 
   function renderPhotos(photos) {
     var templateFragment = document.createDocumentFragment(); // переменная с созданием документ фрагмента
@@ -31,8 +32,6 @@
   }
 
   function onError(errorMessage) {
-    var main = document.querySelector('main');
-    var errorBlock = document.createElement('div');
     errorBlock.classList.add('error-block');
     errorBlock.textContent = errorMessage;
     main.insertAdjacentElement('afterbegin', errorBlock);
@@ -74,5 +73,6 @@
     getDiscussionPictures: getDiscussionPictures,
     renderPhotos: renderPhotos
   };
+  window.load.download(onSuccess, onError); // переменная массива фото берет данные из функции создания фото.
 })();
 

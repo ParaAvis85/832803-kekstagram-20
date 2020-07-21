@@ -1,12 +1,5 @@
 'use strict';
 (function () {
-  var onPopupEscPress = function onPopupEscPress(evt) {
-    if (evt.keyCode === 27) {
-      evt.preventDefault();
-      errorWrap.remove();
-      successWrap.remove();
-    }
-  };
   var main = document.querySelector('main');
   var successTemplate = document.querySelector('#success')
     .content
@@ -16,6 +9,14 @@
     .querySelector('.error');
   var successWrap = successTemplate.cloneNode(true);
   var errorWrap = errorTemplate.cloneNode(true);
+  var onPopupEscPress = function onPopupEscPress(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      errorWrap.remove();
+      successWrap.remove();
+    }
+  };
+
 
   function removeMessage(wrap) {
     if (main.contains(wrap)) {

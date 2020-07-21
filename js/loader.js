@@ -3,12 +3,13 @@
   var COMMENTS_STEP = 5;
 
   window.getAddComments = function () {
+    var commentsShow = COMMENTS_STEP;
     var bigPicture = document.querySelector('.big-picture');
     var commentsLoader = bigPicture.querySelector('.comments-loader');
     var socialCommentsWrapper = bigPicture.querySelector('.social__comments');
     var socialComment = socialCommentsWrapper.querySelectorAll('.social__comment');
     var socialCommentCount = bigPicture.querySelector('.social__comment-count');
-    var commentsShow = COMMENTS_STEP;
+
     commentsLoader.classList.remove('hidden');
     var getCommentsList = function () {
       for (var i = 0; i < socialComment.length; i++) {

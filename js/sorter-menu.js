@@ -2,9 +2,11 @@
 (function () {
   var photosList = document.querySelector('.pictures');
   var imgFilters = document.querySelector('.img-filters');
+
+  var buttons = imgFilters.querySelectorAll('button');
   // Функция обработки кликов по кнопкам-фильтрам
   function clickFilterButton(photos) {
-    var buttons = imgFilters.querySelectorAll('button');
+
     var sortPictures = [];
 
     var onButtonDefaultClick = window.debounce.debounce(function (evt) {

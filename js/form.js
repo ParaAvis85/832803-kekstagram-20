@@ -7,6 +7,7 @@
   var MIN_SYMBOL = 2;
   var MAX_SYMBOL = 20;
   var MAX_HASHTAGS = 5;
+
   var textHashtag = document.querySelector('.text__hashtags');
   var re = /^(#[a-zA-Zа-яА-Я0-9]+ +){0,4}(#[a-zA-Zа-яА-Я0-9]+)?$/;
   var form = document.querySelector('.img-upload__form');
