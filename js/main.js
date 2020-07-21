@@ -17,7 +17,7 @@
   }
 
   function onSuccess(pictures) {
-    renderPhotos(pictures, photosList);
+    renderPhotos(pictures);
     imgFilters.classList.remove('img-filters--inactive');
     window.sortermenu.clickFilterButton(pictures);
     photosList.addEventListener('click', function onCustomPhotoClick(evt) {
