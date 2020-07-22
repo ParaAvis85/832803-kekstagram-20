@@ -9,15 +9,15 @@
 
     var sortPictures = [];
 
-    var onButtonDefaultClick = window.debounce.debounce(function (evt) {
+    var onButtonDefaultClick = window.debounce.bounce(function (evt) {
       onButtonClick(window.main.getDefaultPictures, evt);
     });
 
-    var onButtonRandomClick = window.debounce.debounce(function (evt) {
+    var onButtonRandomClick = window.debounce.bounce(function (evt) {
       onButtonClick(window.main.getRandomPictures, evt);
     });
 
-    var onButtonDiscussionClick = window.debounce.debounce(function (evt) {
+    var onButtonDiscussionClick = window.debounce.bounce(function (evt) {
       onButtonClick(window.main.getDiscussionPictures, evt);
     });
 
