@@ -16,6 +16,31 @@
 
   }
 
+  // Функция создания копии массива фотографий с сервера
+  function getDefaultPictures(pictures) {
+    return pictures.slice();
+  }
+
+  // Функция нахождения 10 случайных неповторяющихся фотографий
+  function getRandomPictures(pictures) {
+    var randomUniqueArray = window.util.getUniqueArray(0, pictures.length);
+    var randomPictures = [];
+    randomUniqueArray.forEach(function (item) {
+      return randomPictures.push(pictures[item]);
+    });
+    return randomPictures;
+  }
+
+  // Функция нахождения самых обсуждаемых фотографий (сортировка)
+  function getDiscussionPictures(pictures) {
+    var sortCommentPictures = pictures.slice();
+    sortCommentPictures.sort(function (a, b) {
+      return b.comments.length - a.comments.length;
+    });
+    return sortCommentPictures;
+  }
+
+
   function onSuccess(pictures) {
     renderPhotos(pictures);
     window.sortermenu.display();
@@ -41,29 +66,6 @@
       window.bigPicture.close();
       document.removeEventListener('keydown', onEscapePress);
     }
-  }
-  // Функция создания копии массива фотографий с сервера
-  function getDefaultPictures(pictures) {
-    return pictures.slice();
-  }
-
-  // Функция нахождения 10 случайных неповторяющихся фотографий
-  function getRandomPictures(pictures) {
-    var randomUniqueArray = window.util.getUniqueArray(0, pictures.length);
-    var randomPictures = [];
-    randomUniqueArray.forEach(function (item) {
-      return randomPictures.push(pictures[item]);
-    });
-    return randomPictures;
-  }
-
-  // Функция нахождения самых обсуждаемых фотографий (сортировка)
-  function getDiscussionPictures(pictures) {
-    var sortCommentPictures = pictures.slice();
-    sortCommentPictures.sort(function (a, b) {
-      return b.comments.length - a.comments.length;
-    });
-    return sortCommentPictures;
   }
 
   window.main = {
