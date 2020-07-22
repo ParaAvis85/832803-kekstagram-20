@@ -46,7 +46,13 @@
       addEventElement(item, 'filter-discussed', onButtonDiscussionClick);
     });
   }
+
+  function displayFilterMenu() {
+    imgFilters.classList.remove('img-filters--inactive');
+  }
+
   window.sortermenu = {
-    clickFilterButton: clickFilterButton
+    clickFilterButton: clickFilterButton,
+    display: displayFilterMenu
   };
 })();

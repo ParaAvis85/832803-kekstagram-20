@@ -1,7 +1,6 @@
 'use strict';
 (function () {
 
-  var imgFilters = document.querySelector('.img-filters');
   var photosList = document.querySelector('.pictures'); //  ищем список фото
   var main = document.querySelector('main');
   var errorBlock = document.createElement('div');
@@ -19,7 +18,7 @@
 
   function onSuccess(pictures) {
     renderPhotos(pictures);
-    imgFilters.classList.remove('img-filters--inactive');
+    window.sortermenu.display();
     window.sortermenu.clickFilterButton(pictures);
     photosList.addEventListener('click', function onCustomPhotoClick(evt) {
       var picture = evt.target.closest('.picture');
