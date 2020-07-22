@@ -28,7 +28,7 @@
         var activeButton = imgFilters.querySelector('.img-filters__button--active');
         activeButton.classList.remove('img-filters__button--active');
         target.classList.add('img-filters__button--active');
-        window.gallery.clearGallery('.picture', photosList);
+        window.gallery.clear('.picture', photosList);
         sortPictures = callback(photos);
         window.main.renderPhotos(sortPictures, photosList);
       }
