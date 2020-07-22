@@ -50,4 +50,5 @@
     openSuccessMessage: openSuccessMessage,
     openErrorMessage: openErrorMessage
   };
+
 })();

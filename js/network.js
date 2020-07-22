@@ -63,4 +63,5 @@
       createXHR(UP_URL, 'POST', onSuccess, onError, data);
     }
   };
+
 })();

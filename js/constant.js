@@ -12,5 +12,6 @@ window.constant = (function () {
     MAX_SCALE_VALUE: 100, // максимальное значение счетчика
     SCALE_STEP: 25, // шаг значения счетчика
   };
+
 })();
 

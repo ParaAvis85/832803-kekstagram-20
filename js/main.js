@@ -74,6 +74,8 @@
     getDiscussionPictures: getDiscussionPictures,
     renderPhotos: renderPhotos
   };
+
   window.load.download(onSuccess, onError); // переменная массива фото берет данные из функции создания фото.
+
 })();
 

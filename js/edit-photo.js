@@ -49,6 +49,7 @@
     }
     changePictureScale(scaleValue);
   }
+
   // функция уменьшения фото
   function pictureDecreaseScale() {
     var scaleValue = parseInt(controlValue.value, 10);
@@ -58,6 +59,7 @@
     }
     changePictureScale(scaleValue);
   }
+
   // счетчик размера
   function changePictureScale(value) {
     controlValue.value = value + '%';
@@ -120,6 +122,7 @@
   }
 
   setUploadEffectLevelHidden();
+
   // черновой вариант открытия скрытия фото для редактирования
   function openEditImageEscPress(evt) {
     if (evt.keyCode === 27 && evt.target !== hashtagInput) {
@@ -149,6 +152,7 @@
   controlBigger.addEventListener('click', function () {
     pictureIncreaseScale();
   });
+
   // обработчик уменьшения фото
   controlSmaller.addEventListener('click', function () {
     pictureDecreaseScale();
@@ -191,7 +195,9 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
   window.editphoto = {
     closePopup: closeEditPhoto
   };
+
 })();

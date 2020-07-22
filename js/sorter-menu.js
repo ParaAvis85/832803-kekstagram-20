@@ -4,6 +4,7 @@
   var imgFilters = document.querySelector('.img-filters');
 
   var buttons = imgFilters.querySelectorAll('button');
+
   // Функция обработки кликов по кнопкам-фильтрам
   function clickFilterButton(photos) {
 
@@ -55,4 +56,5 @@
     clickFilterButton: clickFilterButton,
     display: displayFilterMenu
   };
+
 })();

@@ -8,7 +8,9 @@
       container.removeChild(item);
     });
   }
+
   window.gallery = {
     clear: clearGallery
   };
+
 })();

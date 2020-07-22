@@ -18,4 +18,5 @@
   window.debounce = {
     bounce: debounce
   };
+
 })();

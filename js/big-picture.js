@@ -55,4 +55,5 @@
     open: openLargePicture,
     close: closeLargePicture
   };
+
 })();
