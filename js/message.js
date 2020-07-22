@@ -25,6 +25,18 @@
     document.removeEventListener('keydown', onPopupEscPress);
   }
 
+  function openSuccessMessage() {
+    main.appendChild(successWrap);
+    setCloseMessageHandler(successWrap);
+    document.addEventListener('keydown', onPopupEscPress);
+  }
+
+  function openErrorMessage() {
+    main.appendChild(errorWrap);
+    setCloseMessageHandler(errorWrap);
+    document.addEventListener('keydown', onPopupEscPress);
+  }
+
   function setCloseMessageHandler(wrap) {
     wrap.addEventListener('click', function (evt) {
       if (evt.target === wrap || evt.target === wrap.querySelector('button')) {
@@ -35,16 +47,7 @@
   }
 
   window.messages = {
-
-    openSuccessMessage: function () {
-      main.appendChild(successWrap);
-      setCloseMessageHandler(successWrap);
-      document.addEventListener('keydown', onPopupEscPress);
-    },
-    openErrorMessage: function () {
-      main.appendChild(errorWrap);
-      setCloseMessageHandler(errorWrap);
-      document.addEventListener('keydown', onPopupEscPress);
-    }
+    openSuccessMessage: openSuccessMessage,
+    openErrorMessage: openErrorMessage
   };
 })();
