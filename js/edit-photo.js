@@ -22,15 +22,6 @@
   var effectLevelDepth = document.querySelector('.effect-level__depth');
   var imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 
-  // черновой вариант открытия скрытия фото для редактирования
-
-  function openEditImageEscPress(evt) {
-    if (evt.keyCode === 27 && evt.target !== hashtagInput) {
-      evt.preventDefault();
-      closeEditPhoto();
-    }
-  }
-
   // функция открытия редактора фото
   function openEditphoto() {
     openOverlayChangeImage.classList.remove('hidden');
@@ -48,32 +39,6 @@
 
     document.removeEventListener('keydown', openEditImageEscPress);
   }
-
-  // обработчик с вызовом функции отрытия редактора
-  upLoadInputField.addEventListener('change', function () {
-    openEditphoto();
-  });
-
-  // обработчик закрытия через клавиши esc и enter
-  buttonEditClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
-      closeEditPhoto();
-    }
-  });
-
-  // обработчик с закрытием функции редактирования фото
-  buttonEditClose.addEventListener('click', function () {
-    closeEditPhoto();
-  });
-
-  // Обработчик увеличения фото
-  controlBigger.addEventListener('click', function () {
-    pictureIncreaseScale();
-  });
-  // обработчик уменьшения фото
-  controlSmaller.addEventListener('click', function () {
-    pictureDecreaseScale();
-  });
 
   // функция увеличения фото
   function pictureIncreaseScale() {
@@ -122,8 +87,6 @@
     }
   }
 
-  imgUploadEffectLevel.classList.add('hidden');
-
   function resetCurrentEffect(evt) {
     effectLevelValue.value = 100;
     effectLevelPin.style.left = 100 + '%';
@@ -137,7 +100,6 @@
       imgUploadEffectLevel.classList.add('hidden');
     }
   }
-  effectsList.addEventListener('change', resetCurrentEffect);
 
   function getLevelPin() {
     var positionX = effectLevelPin.offsetLeft;
@@ -153,13 +115,53 @@
     setFilterValue(current.value, percent);
   }
 
+  function setUploadEffectLevelHidden() {
+    imgUploadEffectLevel.classList.add('hidden');
+  }
+
+  setUploadEffectLevelHidden();
+  // черновой вариант открытия скрытия фото для редактирования
+  function openEditImageEscPress(evt) {
+    if (evt.keyCode === 27 && evt.target !== hashtagInput) {
+      evt.preventDefault();
+      closeEditPhoto();
+    }
+  }
+
+  // обработчик с вызовом функции отрытия редактора
+  upLoadInputField.addEventListener('change', function () {
+    openEditphoto();
+  });
+
+  // обработчик закрытия через клавиши esc и enter
+  buttonEditClose.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      closeEditPhoto();
+    }
+  });
+
+  // обработчик с закрытием функции редактирования фото
+  buttonEditClose.addEventListener('click', function () {
+    closeEditPhoto();
+  });
+
+  // Обработчик увеличения фото
+  controlBigger.addEventListener('click', function () {
+    pictureIncreaseScale();
+  });
+  // обработчик уменьшения фото
+  controlSmaller.addEventListener('click', function () {
+    pictureDecreaseScale();
+  });
+
+  effectsList.addEventListener('change', resetCurrentEffect);
+
   effectLevelPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     var lineWidth = effectLevelLine.offsetWidth;
     var startCoords = {
       x: evt.clientX
     };
-
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
       var shift = {
@@ -180,7 +182,6 @@
       }
       changeFilterValue();
     }
-
     function onMouseUp(upEvt) {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
@@ -190,7 +191,6 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-
   window.editphoto = {
     closePopup: closeEditPhoto
   };
