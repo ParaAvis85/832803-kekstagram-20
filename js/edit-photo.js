@@ -103,8 +103,9 @@
     }
   }
 
-  function getLevelPin() {
-    var positionX = effectLevelPin.offsetLeft;
+
+  function getLevelPin(x) {
+    var positionX = x === undefined ? effectLevelPin.offsetLeft : x;
     var lineWidth = effectLevelLine.offsetWidth;
     var percent = Math.round(100 * positionX / lineWidth);
     return percent;
@@ -152,7 +153,6 @@
   controlBigger.addEventListener('click', function () {
     pictureIncreaseScale();
   });
-
   // обработчик уменьшения фото
   controlSmaller.addEventListener('click', function () {
     pictureDecreaseScale();
@@ -162,10 +162,10 @@
 
   effectLevelPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    var lineWidth = effectLevelLine.offsetWidth;
     var startCoords = {
       x: evt.clientX
     };
+
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
       var shift = {
@@ -174,18 +174,19 @@
       startCoords = {
         x: moveEvt.clientX
       };
-      if (effectLevelPin.offsetLeft < 0) {
-        effectLevelPin.style.left = 0 + 'px';
-        effectLevelDepth.style.width = 0 + 'px';
-      } else if (effectLevelPin.offsetLeft > lineWidth) {
-        effectLevelPin.style.left = lineWidth + 'px';
-        effectLevelDepth.style.width = lineWidth + 'px';
-      } else {
-        effectLevelPin.style.left = (effectLevelPin.offsetLeft - shift.x) + 'px';
-        effectLevelDepth.style.width = (effectLevelPin.offsetLeft - shift.x) + 'px';
+
+      var newX = effectLevelPin.offsetLeft - shift.x;
+
+      var newLevel = getLevelPin(newX);
+
+      if (newLevel >= 0 && newLevel <= 100) {
+        effectLevelPin.style.left = newX + 'px';
+        effectLevelDepth.style.width = newX + 'px';
       }
+
       changeFilterValue();
     }
+
     function onMouseUp(upEvt) {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
