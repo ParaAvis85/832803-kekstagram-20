@@ -10,7 +10,7 @@
   var successWrap = successTemplate.cloneNode(true);
   var errorWrap = errorTemplate.cloneNode(true);
   var onPopupEscPress = function onPopupEscPress(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === window.constant.ESC_BUTTON) {
       evt.preventDefault();
       errorWrap.remove();
       successWrap.remove();

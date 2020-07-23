@@ -90,9 +90,9 @@
   }
 
   function resetCurrentEffect(evt) {
-    effectLevelValue.value = 100;
-    effectLevelPin.style.left = 100 + '%';
-    effectLevelDepth.style.width = 100 + '%';
+    effectLevelValue.value = window.constant.MAX_VALUE;
+    effectLevelPin.style.left = window.constant.MAX_VALUE + '%';
+    effectLevelDepth.style.width = window.constant.MAX_VALUE + '%';
     imgUploadPreview.className = '';
     imgUploadPreview.style.filter = '';
     imgUploadPreview.classList.add('effects__preview--' + evt.target.value);
@@ -126,7 +126,7 @@
 
   // черновой вариант открытия скрытия фото для редактирования
   function openEditImageEscPress(evt) {
-    if (evt.keyCode === 27 && evt.target !== hashtagInput) {
+    if (evt.keyCode === window.constant.ESC_BUTTON && evt.target !== hashtagInput) {
       evt.preventDefault();
       closeEditPhoto();
     }
@@ -139,7 +139,7 @@
 
   // обработчик закрытия через клавиши esc и enter
   buttonEditClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
+    if (evt.keyCode === window.constant.ENTER_BUTTON) {
       closeEditPhoto();
     }
   });
@@ -179,7 +179,7 @@
 
       var newLevel = getLevelPin(newX);
 
-      if (newLevel >= 0 && newLevel <= 100) {
+      if (newLevel >= 0 && newLevel <= window.constant.MAX_VALUE) {
         effectLevelPin.style.left = newX + 'px';
         effectLevelDepth.style.width = newX + 'px';
       }

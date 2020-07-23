@@ -4,9 +4,6 @@
 // Валидация хеш-тегов
 // form.js
 (function () {
-  var MIN_SYMBOL = 2;
-  var MAX_SYMBOL = 20;
-  var MAX_HASHTAGS = 5;
 
   var textHashtag = document.querySelector('.text__hashtags');
   var re = /^(#[a-zA-Zа-яА-Я0-9]+ +){0,4}(#[a-zA-Zа-яА-Я0-9]+)?$/;
@@ -23,7 +20,7 @@
     var filterMassTextFill = (newlotTextBlock.length !== lotTextBlock.length);
     if (filterMassTextFill) {
       textHashtag.setCustomValidity('Хештеги не должны повторяться!');
-    } else if (newlotTextBlock.length > MAX_HASHTAGS) {
+    } else if (newlotTextBlock.length > window.constant.MAX_HASHTAGS) {
       textHashtag.setCustomValidity('Максимальное количество хештегов 5шт!');
     } else if (re.test(textHashtag.value)) {
       textHashtag.setCustomValidity('');
@@ -32,10 +29,10 @@
     }
 
     for (var i = 0; i < newlotTextBlock.length; i++) {
-      if (newlotTextBlock[i].length > MAX_SYMBOL) {
+      if (newlotTextBlock[i].length > window.constant.MAX_SYMBOL) {
         textHashtag.setCustomValidity('Максимальное количество знаков, не должно превышать 20шт включая знак #');
         break;
-      } else if (newlotTextBlock[i].length < MIN_SYMBOL) {
+      } else if (newlotTextBlock[i].length < window.constant.MIN_SYMBOL) {
         textHashtag.setCustomValidity('Хештег не может состоять из одного "#"');
       }
       break;

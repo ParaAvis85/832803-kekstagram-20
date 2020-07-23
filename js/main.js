@@ -40,7 +40,7 @@
   }
 
   function onEscapePress(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === window.constant.ESC_BUTTON) {
       window.bigPicture.close();
       document.removeEventListener('keydown', onEscapePress);
     }
