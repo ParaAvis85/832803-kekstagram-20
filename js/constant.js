@@ -17,7 +17,8 @@ window.constant = (function () {
     MAX_VALUE: 100,
     MIN_SYMBOL: 2,
     MAX_SYMBOL: 20,
-    MAX_HASHTAGS: 5
+    MAX_HASHTAGS: 5,
+    COMMENTS_STEP: 5
   };
 
 })();
