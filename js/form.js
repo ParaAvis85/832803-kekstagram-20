@@ -48,5 +48,6 @@
       window.messages.openErrorMessage();
     });
     evt.preventDefault();
+    form.reset();
   });
 })();
