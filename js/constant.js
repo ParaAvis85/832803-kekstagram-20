@@ -1,7 +1,7 @@
 'use strict';
-window.constant = (function () {
+(function () {
 // список констант
-  return {
+  window.constant = {
     PHOTOS_COUNT: 25, // переменная количества обьектов по заданию
     MIN_LIKES_COUNT: 15, // минимальное количество лайков
     MAX_LIKES_COUNT: 200, // максимальное количество лайков
