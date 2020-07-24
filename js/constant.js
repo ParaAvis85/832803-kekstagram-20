@@ -11,6 +11,15 @@ window.constant = (function () {
     MIN_SCALE_VALUE: 25, // минимальное значение счетчика
     MAX_SCALE_VALUE: 100, // максимальное значение счетчика
     SCALE_STEP: 25, // шаг значения счетчика
+    ESC_BUTTON: 27,
+    ENTER_BUTTON: 13,
+    DEBOUNCE_INTERVAL: 500,
+    MAX_VALUE: 100,
+    MIN_SYMBOL: 2,
+    MAX_SYMBOL: 20,
+    MAX_HASHTAGS: 5,
+    COMMENTS_STEP: 5
   };
+
 })();
 
