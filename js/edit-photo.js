@@ -21,6 +21,7 @@
   var effectLevelValue = document.querySelector('.effect-level__value');
   var effectLevelDepth = document.querySelector('.effect-level__depth');
   var imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
+  var textArea = document.querySelector('.text__description');
 
   // функция открытия редактора фото
   function openEditphoto() {
@@ -126,7 +127,7 @@
 
   // черновой вариант открытия скрытия фото для редактирования
   function openEditImageEscPress(evt) {
-    if (evt.keyCode === window.constant.ESC_BUTTON && evt.target !== hashtagInput) {
+    if (evt.keyCode === window.constant.ESC_BUTTON && evt.target !== hashtagInput && evt.target !== textArea) {
       evt.preventDefault();
       closeEditPhoto();
     }
