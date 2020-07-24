@@ -8,7 +8,6 @@
 
   var commentsLoader = bigPicture.querySelector('.comments-loader');
 
-  var commentCountForRender = window.constant.COMMENTS_STEP;
   var renderCommentsHandler;
 
   function renderComment(moreUserComment) {
@@ -31,10 +30,12 @@
 
 
   function openLargePicture(photo) {
+    var comments = photo.comments;
+    var commentCountForRender = window.constant.COMMENTS_STEP > comments.length ? comments.length : window.constant.COMMENTS_STEP;
     bigPicture.classList.remove('hidden'); // удаляем класс скрытия большого фото
     bigPicture.querySelector('.big-picture__img img').src = photo.url; // ставим первое фото с массива фото
     bigPicture.querySelector('.likes-count').textContent = photo.likes; // ставим динамичесике лайки из функции создания количества случайных лайков
-    bigPicture.querySelector('.social__comment-count').textContent = window.constant.COMMENTS_STEP + ' из ' + photo.comments.length; // ставим динамические коментарии из функции создания коментариев
+    bigPicture.querySelector('.social__comment-count').textContent = commentCountForRender + ' из ' + photo.comments.length; // ставим динамические коментарии из функции создания коментариев
 
     bigPicture.querySelector('.social__caption').textContent = photo.description; // вставляем пустое описание фотографии
     bigPicture.querySelector('.comments-loader').classList.add('hidden'); // скрываем загрузку дополнительных коментариев
@@ -58,7 +59,7 @@
       commentsLoader.addEventListener('click', renderCommentsHandler);
     }
 
-    renderComments(photo.comments, 0, window.constant.COMMENTS_STEP);
+    renderComments(photo.comments, 0, commentCountForRender);
 
     bigPictureCancel.addEventListener('click', closeLargePicture);
   }
@@ -74,7 +75,6 @@
     document.body.classList.remove('modal-open');
     bigPictureCancel.removeEventListener('keydown', closeLargePicture);
     commentsLoader.removeEventListener('click', renderCommentsHandler);
-    commentCountForRender = window.constant.COMMENTS_STEP;
   }
 
   window.bigPicture = {
