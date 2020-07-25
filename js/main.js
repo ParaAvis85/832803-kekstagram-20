@@ -28,7 +28,6 @@
       if (picture) {
         var id = picture.dataset.id;
         window.bigPicture.open(pictures[id]);
-        // document.addEventListener('keydown', onEscapePress);
       }
     });
   }
