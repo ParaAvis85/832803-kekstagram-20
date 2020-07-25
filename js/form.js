@@ -16,6 +16,16 @@
       return lotTextBlock.indexOf(elem) === pos;
     });
 
+    for (var i = 0; i < newlotTextBlock.length; i++) {
+      if (newlotTextBlock[i].length > window.constant.MAX_SYMBOL) {
+        textHashtag.setCustomValidity('Максимальное количество знаков, не должно превышать 20шт включая знак #');
+        break;
+      } else if (newlotTextBlock[i].length < window.constant.MIN_SYMBOL) {
+        textHashtag.setCustomValidity('Хештег не может состоять из одного "#"');
+      }
+      break;
+    }
+
     // условие валидации хештегов
     var filterMassTextFill = (newlotTextBlock.length !== lotTextBlock.length);
     if (filterMassTextFill) {
@@ -28,15 +38,7 @@
       textHashtag.setCustomValidity('Неправильно набран хеш-тег! Пример: #module');
     }
 
-    for (var i = 0; i < newlotTextBlock.length; i++) {
-      if (newlotTextBlock[i].length > window.constant.MAX_SYMBOL) {
-        textHashtag.setCustomValidity('Максимальное количество знаков, не должно превышать 20шт включая знак #');
-        break;
-      } else if (newlotTextBlock[i].length < window.constant.MIN_SYMBOL) {
-        textHashtag.setCustomValidity('Хештег не может состоять из одного "#"');
-      }
-      break;
-    }
+
   });
 
   form.addEventListener('submit', function (evt) {

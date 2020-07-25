@@ -28,7 +28,7 @@
       if (picture) {
         var id = picture.dataset.id;
         window.bigPicture.open(pictures[id]);
-        document.addEventListener('keydown', onEscapePress);
+        // document.addEventListener('keydown', onEscapePress);
       }
     });
   }
@@ -37,13 +37,6 @@
     errorBlock.classList.add('error-block');
     errorBlock.textContent = errorMessage;
     main.insertAdjacentElement('afterbegin', errorBlock);
-  }
-
-  function onEscapePress(evt) {
-    if (evt.keyCode === window.constant.ESC_BUTTON) {
-      window.bigPicture.close();
-      document.removeEventListener('keydown', onEscapePress);
-    }
   }
 
   window.load.download(onSuccess, onError); // переменная массива фото берет данные из функции создания фото.

@@ -24,7 +24,7 @@
   var textArea = document.querySelector('.text__description');
 
   // функция открытия редактора фото
-  function openEditphoto() {
+  function openEditPhoto() {
     openOverlayChangeImage.classList.remove('hidden');
     document.body.classList.add('modal-open');
 
@@ -135,7 +135,7 @@
 
   // обработчик с вызовом функции отрытия редактора
   upLoadInputField.addEventListener('change', function () {
-    openEditphoto();
+    openEditPhoto();
   });
 
   // обработчик закрытия через клавиши esc и enter

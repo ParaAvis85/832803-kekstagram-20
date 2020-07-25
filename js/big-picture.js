@@ -62,6 +62,7 @@
     renderComments(photo.comments, 0, commentCountForRender);
 
     bigPictureCancel.addEventListener('click', closeLargePicture);
+    document.body.addEventListener('keydown', onEscapePress);
   }
 
   function renderComments(comments, firstIndex, lastIndex) {
@@ -75,11 +76,16 @@
     document.body.classList.remove('modal-open');
     bigPictureCancel.removeEventListener('keydown', closeLargePicture);
     commentsLoader.removeEventListener('click', renderCommentsHandler);
+    document.body.removeEventListener('keydown', onEscapePress);
   }
 
+  function onEscapePress(evt) {
+    if (evt.keyCode === window.constant.ESC_BUTTON) {
+      closeLargePicture();
+    }
+  }
   window.bigPicture = {
-    open: openLargePicture,
-    close: closeLargePicture
+    open: openLargePicture
   };
 
 })();
