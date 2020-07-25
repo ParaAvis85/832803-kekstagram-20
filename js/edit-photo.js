@@ -37,7 +37,8 @@
     document.body.classList.remove('modal-open');
     upLoadInputField.value = '';
     resizeImage.className = '';
-
+    resetCurrentEffect('none');
+    changePictureScale(100);
     document.removeEventListener('keydown', openEditImageEscPress);
   }
 
@@ -90,14 +91,14 @@
     }
   }
 
-  function resetCurrentEffect(evt) {
+  function resetCurrentEffect(filterName) {
     effectLevelValue.value = window.constant.MAX_VALUE;
     effectLevelPin.style.left = window.constant.MAX_VALUE + '%';
     effectLevelDepth.style.width = window.constant.MAX_VALUE + '%';
     imgUploadPreview.className = '';
     imgUploadPreview.style.filter = '';
-    imgUploadPreview.classList.add('effects__preview--' + evt.target.value);
-    if (evt.target.value !== 'none') {
+    imgUploadPreview.classList.add('effects__preview--' + filterName);
+    if (filterName !== 'none') {
       imgUploadEffectLevel.classList.remove('hidden');
     } else {
       imgUploadEffectLevel.classList.add('hidden');
@@ -159,7 +160,9 @@
     pictureDecreaseScale();
   });
 
-  effectsList.addEventListener('change', resetCurrentEffect);
+  effectsList.addEventListener('change', function (evt) {
+    resetCurrentEffect(evt.target.value);
+  });
 
   effectLevelPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
